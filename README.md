@@ -15,14 +15,15 @@ This tutorial was done on MacOS High Sierra using Vagrant for machine virtualiza
 When complete, you'll be able to create a serverless envrionment capable of running lambda functions without the overhead of managing the containerization of those functions.
 
 #### Walkthrough
-1. Environment and VM Setup
+1. [Environment and VM Setup](#environment-and-vm-setup)
 2. Kubernetes Installation and Configuration
-3. Application Deployment (Containerized)
-4. Fission Installation and Configuration
-5. Kanali Installation and Configuration
-6. Application Deployment (Serverless Functions)
+3. Setup Host Machine to Control Cluster
+4. Application Deployment (Containerized)
+5. Fission Installation and Configuration
+6. Kanali Installation and Configuration
+7. Application Deployment (Serverless Functions)
 
-##### Environment and VM Setup
+# Environment and VM Setup
 ###### Install Brew
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
