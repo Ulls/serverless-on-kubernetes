@@ -24,7 +24,7 @@ When complete, you'll be able to create a serverless envrionment capable of runn
 7. [Serverless Function Deployment](#)
 
 # Environment and VM Setup
-###### Install Brew
+### Install Brew
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
