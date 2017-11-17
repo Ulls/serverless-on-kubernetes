@@ -171,18 +171,20 @@ When you run the binary files you copied to the /usr/bin directory a couple of s
 
 **MASTER and MINIONS**
 `vi /etc/kubernetes/config`
-> KUBE_LOGTOSTDERR="--logtostderr=true"
-> KUBE_LOG_LEVEL="--v=0"
-> KUBE_ALLOW_PRIV="--allow-privileged=false"
-> KUBE_MASTER="--master=http://master:8080"
-> KUBE_ETCD_SERVERS="--etcd-servers=http://master:2379"
+~~~~
+KUBE_LOGTOSTDERR="--logtostderr=true"
+KUBE_LOG_LEVEL="--v=0"
+KUBE_ALLOW_PRIV="--allow-privileged=false"
+KUBE_MASTER="--master=http://master:8080"
+KUBE_ETCD_SERVERS="--etcd-servers=http://master:2379"
+~~~~
 
 **MASTER**
 `vi /etc/kubernetes/kubelet`
 > KUBELET_ADDRESS="--address=127.0.0.1"
 > KUBELET_HOSTNAME="--hostname-override=127.0.0.1"
 > KUBELET_API_SERVER="--api-servers=http://127.0.0.1:8080"
-> KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"
+>  KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"
 > KUBELET_ARGS=""
 
 **MINIONS**
