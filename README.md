@@ -1,39 +1,148 @@
-$ mkdir master
-$ mkdir minion1
-$ mkdir minion2
+# Setup an local, on premises environment to run lambda like microservice functions on a kubernetes cluster
 
-Find the IP addresses for your VMs and alias them in your cluster’s /etc/hosts file…
-# vi /etc/hosts
-172.28.128.6	master
-172.28.128.9	minion1
+> This repository houses a few example applications to run on a kubernetes cluster in the traditional containerized method and functions to run as microservices in a kubernetes "serverless" environment.  This README file walks a user through the steps of setting up the Kubernetes cluster and deploying the applications.
 
-Disable
-$ vagrant ssh
-# sudo su
-# yum install -y wget
+## Prefatory Matters
+This tutorial was done on MacOS High Sierra using Vagrant for machine virtualization.  Most of the important aspects are accomplished inside the Vagrant VMs running CentOS 7, so there reason this couldn't work on Windows or Linux.
 
-Disable selinux
-# vi /etc/sysconfig/selinux
-	#SELINUX=enabled
-	SELINUX=disabled
-# reboot
+## What You'll Accomplish
+1. Using Vagrant, you'll setup three CentOS7 virtual machines that will act as a master and two minions of a virtual Kubernetes (K8) cluster running on a single machine.  
+2. Using those VMs, manually create and configure a Kubernetes cluster.  Install an ingress controller to control access to the services running on the cluster.
+3. Install a serverless framework to transform your Kubernetes cluster into an AWS Lambda-like serverless platform.
+4. Deploy Node.js and Python applications to the cluster running as traditional containerized applications and lambda functions.
 
-$ vagrant ssh
-# sudo su
+## Goal
+When complete, you'll be able to create a serverless envrionment capable of running lambda functions without the overhead of managing the containerization of those functions.
 
-Check to assure selinux is disabled
-# sestatus
-disabled
+#### Walkthrough
+1. Environment and VM Setup
+2. Kubernetes Installation and Configuration
+3. Application Deployment (Containerized)
+4. Fission Installation and Configuration
+5. Kanali Installation and Configuration
+6. Application Deployment (Serverless Functions)
 
-# cd /etc
-# wget https://github.com/kubernetes/kubernetes/releases/download/v1.8.3/kubernetes.tar.gz
-# tar -zvxf kubernetes.tar.gz -C .
+##### Environment and VM Setup
+###### Install Brew
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+###### Install Vagrant and Dependencies
+```
+brew cask install virtualbox
+brew cask install vagrant
+brew cask install vagrant-manager
+brew cask install wget
+```
+
+###### Clone this Repository
+```
+cd ~/Documents
+mkdir serverless-on-kubernetes && cd serverless-on-kubernetes
+git clone https://github.com/Ulls/serverless-on-kubernetes.git
+```
+(If you need to install git, instructions are [here](https://www.atlassian.com/git/tutorials/install-git#mac-os-x).)
+
+###### Configure the CentOS VMs
+```
+cd ~/Documents/serverless-on-kubernetes
+mkdir master && cd master
+vagrant init centos/7
+```
+
+Edit the Vagrantfile to allow insecure mode for downloading the box (cert issue at the host) and for the creation of a private IP address for the VM.  The Vagrantfile should look like this:
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.box_download_insecure = true
+  config.vm.network "private_network", type: "dhcp"
+end
+```
+
+###### Create the VM by running Vagrant's 'up' command
+```
+vagrant up
+```
+There is a chance you might run into the dreaded Vagrant error "".  If that's the case add a random IP address to your config.vm.network line: `config.vm.network "private_network", type: "dhcp", ip: "10.0.0.8"`
+
+Repeat these configuration steps starting at "Configure the CentOS VMs" to create the minions.  Simply replace "master" with "minion1" and then repeat again with "minion2".
+
+###### SSH into your VMs and edit the host files so they can communicate.
+```
+cd ~/Documents/local/vagrant/centos7-01
+vagrant ssh
+sudo su
+ip address show
+```
+
+Copy the IP address on the eth1.  Do this for both VMs.  Edit the three /etc/hosts files, the 2 VMs and the host machine so that you can reference these machines by name.
+`vi /etc/hosts` and add...
+```
+<IP of master>    master
+<IP of minion1>   minion1
+<IP of minion2>   minion2
+```
+
+##### Kubernetes Installation and Configuration
+###### Install helper software and disable selinux
+The following steps will apply to both the master and two minions.  It will be noted where there are differences.  In a Kubernetes cluster, the master and the minions require different software installed and configured.  This walkthrough will differentiate those for you.
+
+Let's start with the master.  Access your VMs by issuing the following commands.
+
+```
+cd ~/Documents/serverless-on-kubernetes/master
+vagrant ssh
+```
+At this point you're now inside your VM where you'll install helper software packages and disable selinux.
+```
+sudo su
+yum install -y wget
+yum install -y ntp
+yum install -y etcd
+```
+ntp and etcd are essential to Kubernetes.  We'll run those later on.
+Time to disable selinux...
+`vi /etc/sysconfig/selinux`... edit this file like so:
+~~~~~
+#SELINUX=enabled
+SELINUX=disabled
+~~~~~
+*If you're not familiar with the vi editor, use an editor of you choice otherwise here are a few commands you should know...*
+> i: Input mode (allows you to add text)
+> esc: Leaves input mode
+> shift-ZZ: Saves the file and exits (when not in input mode)
+
+Now reboot to assure selinux is off...
+```
+reboot
+```
+You're not back outside your VM.  It'll come back up in about a minute.  When it does, ssh back into the box and check the status of selinux.
+```
+vagrant ssh
+sudo su
+sestatus
+```
+If sestatus reports "disabled", move on.
+
+###### Install and configure Kubernetes
+
+The following steps are done inside of you VMs, so `cd` to each directory and repeat these steps for each, keeping in mind the differences between the master and the minions.  Again, `vagrant ssh` to access the VM's command line.  Then, perform the following steps...
+```
+mkdir /etc/kubernetes
+cd /tmp
+wget https://github.com/kubernetes/kubernetes/releases/download/v1.8.3/kubernetes.tar.gz
+tar -zvxf kubernetes.tar.gz -C .
+```
 The binaries aren’t included, so they need to be downloaded and extracted…
-# cd /etc/kubernetes/cluster
-# ./get-kube-binaries.sh
-# cd ../server
-# tar -zvxf kubernetes-server-linux-amd64.tar.gz -C .
+```
+cd /tmp/kubernetes/cluster
+./get-kube-binaries.sh
+cd ../server
+tar -zvxf kubernetes-server-linux-amd64.tar.gz -C .
+```
 Set you cluster name…
+```
 # echo "export CLUSTER_NAME=sl" >> /etc/environment
 # exit
 # exit
@@ -41,6 +150,7 @@ $ vagrant ssh
 # sudo su
 # echo $CLUSTER_NAME
 sl
+```
 Copy the binaries to the bin directory…
 # cd /etc/kubernetes/server/kubernetes/server/bin &&
 cp kube-apiserver /usr/bin &&
@@ -50,12 +160,9 @@ cp kube-scheduler /usr/bin &&
 cp kubelet /usr/bin &&
 mkdir /var/lib/kubelet
 
-Install ntp…
+Start ntp
 # yum install -y ntp
 # systemctl enable ntpd && systemctl start ntpd
-
-Install etcd…
-# yum -y install etcd
 
 Minions need to install docker…
 # yum install -y docker
