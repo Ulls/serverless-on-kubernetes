@@ -17,11 +17,11 @@ When complete, you'll be able to create a serverless envrionment capable of runn
 ## Walkthrough
 1. [Environment and VM Setup](#environment-and-vm-setup)
 2. [Kubernetes Installation and Configuration](#kubernetes-installation-and-configuration)
-3. [Setup Host Machine to Control Cluster](#)
-4. [Containerized Application Deployment](#)
-5. [Fission Installation and Configuration](#)
-6. [Kanali Installation and Configuration](#)
-7. [Serverless Function Deployment](#)
+3. [Setup Host Machine to Control Cluster](#setup-host-machine-to-control-cluster)
+4. [Running Containerized Applications](#running-containerized-applications)
+5. [Fission Installation and Configuration](#fission-installation-and-configuration)
+6. [Kanali Installation and Configuration](#kanali-installation-and-configuration)
+7. [Running Serverless Functions](#running-serverless-Functions)
 
 # Environment and VM Setup
 ### Install Brew
@@ -29,7 +29,7 @@ When complete, you'll be able to create a serverless envrionment capable of runn
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-###### Install Vagrant and Dependencies
+### Install Vagrant and Dependencies
 ```
 brew cask install virtualbox
 brew cask install vagrant
@@ -37,7 +37,7 @@ brew cask install vagrant-manager
 brew cask install wget
 ```
 
-###### Clone this Repository
+### Clone this Repository
 ```
 cd ~/Documents
 mkdir serverless-on-kubernetes && cd serverless-on-kubernetes
@@ -45,7 +45,7 @@ git clone https://github.com/Ulls/serverless-on-kubernetes.git
 ```
 (If you need to install git, instructions are [here](https://www.atlassian.com/git/tutorials/install-git#mac-os-x).)
 
-###### Configure the CentOS VMs
+### Configure the CentOS VMs
 ```
 cd ~/Documents/serverless-on-kubernetes
 mkdir master && cd master
@@ -61,7 +61,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-###### Create the VM by running Vagrant's 'up' command
+### Create the VM by running Vagrant's 'up' command
 ```
 vagrant up
 ```
@@ -69,7 +69,7 @@ There is a chance you might run into the dreaded Vagrant error "".  If that's th
 
 Repeat these configuration steps starting at "Configure the CentOS VMs" to create the minions.  Simply replace "master" with "minion1" and then repeat again with "minion2".
 
-###### SSH into your VMs and edit the host files so they can communicate.
+### SSH into your VMs and edit the host files so they can communicate.
 ```
 cd ~/Documents/local/vagrant/centos7-01
 vagrant ssh
@@ -86,7 +86,7 @@ Copy the IP address on the eth1.  Do this for both VMs.  Edit the three /etc/hos
 ```
 
 # Kubernetes Installation and Configuration
-###### Install helper software and disable selinux
+### Install helper software and disable selinux
 The following steps will apply to both the master and two minions.  It will be noted where there are differences.  In a Kubernetes cluster, the master and the minions require different software installed and configured.  This walkthrough will differentiate those for you.
 
 Let's start with the master.  Access your VMs by issuing the following commands.
@@ -126,7 +126,7 @@ sestatus
 ```
 If sestatus reports "disabled", move on.
 
-###### Install and configure Kubernetes
+### Install and configure Kubernetes
 
 The following steps are done inside of you VMs, so `cd` to each directory and repeat these steps for each, keeping in mind the differences between the master and the minions.  Again, `vagrant ssh` to access the VM's command line.  Then, perform the following steps...
 ```
@@ -163,14 +163,17 @@ cp kubelet /usr/bin &&
 mkdir /var/lib/kubelet
 ```
 Start ntp...
+
 `systemctl enable ntpd && systemctl start ntpd`
 
 If you're on a minion, you're going to need to install docker...
+
 `yum install -y docker`
 
 When you run the binary files you copied to the /usr/bin directory a couple of steps ago, they're going to read in variables from the files you're about to create now.  The first command will be what file to create and edit (using vi) followed by the text to place in the file.  
 
 **MASTER and MINIONS**
+
 `vi /etc/kubernetes/config`
 ~~~~
 KUBE_LOGTOSTDERR="--logtostderr=true"
@@ -181,6 +184,7 @@ KUBE_ETCD_SERVERS="--etcd-servers=http://master:2379"
 ~~~~
 
 **MASTER**
+
 `vi /etc/kubernetes/kubelet`
 ~~~~
 KUBELET_ADDRESS="--address=127.0.0.1"
@@ -191,6 +195,7 @@ KUBELET_ARGS=""
 ~~~~
 
 **MINIONS**
+
 `vi /etc/kubernetes/kubelet`
 ~~~~
 KUBELET_ADDRESS="--address=0.0.0.0"
@@ -203,6 +208,7 @@ KUBELET_ARGS="--fail-swap-on=false --require-kubeconfig --cgroup-driver=systemd"
 ~~~~
 
 **MINIONS**
+
 `vi /etc/kubernetes/kubeconfig`
 ~~~~
 apiVersion: v1
@@ -226,6 +232,7 @@ users:
 ~~~~
 
 **MASTER**
+
 `vi /etc/kubernetes/apiserver`
 ~~~~
 KUBE_ETCD_SERVERS="--etcd-servers=http://127.0.0.1:2379"
@@ -240,24 +247,28 @@ KUBELET_PORT="--kubelet-port=10250"
 ~~~~
 
 **MASTER**
+
 `vi /etc/kubernetes/controller-manager`
 ~~~~
 KUBE_CONTROLLER_MANAGER_ARGS=""
 ~~~~
 
 **MASTER**
+
 `vi /etc/kubernetes/scheduler`
 ~~~~
 KUBE_SCHEDULER_ARGS=""
 ~~~~
 
 **MASTER and MINIONS**
+
 `vi /etc/kubernetes/proxy`
 ~~~~
 KUBE_PROXY_ARGS=""
 ~~~~
 
 **MASTER**
+
 `vi /etc/etcd/etcd.conf`
 **ADD** these lines to the end of the file...
 ~~~~
@@ -266,6 +277,7 @@ ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
 ~~~~
 
 Create the service definitions for the kubernetes binaries that need to be run on the **MASTERS**...
+
 `vi /usr/lib/systemd/system/kube-apiserver.service`
 ~~~~
 [Unit]
@@ -342,6 +354,7 @@ WantedBy=multi-user.target
 ~~~~
 
 Create the service definitions for the kubernetes binaries that need to be run on the **MINIONS**...
+
 `vi /usr/lib/systemd/system/kubelet.service`
 ~~~~
 [Unit]
@@ -395,12 +408,14 @@ WantedBy=multi-user.target
 
 Start everything up…
 **MASTER**
+
 ```
 systemctl enable etcd kube-apiserver kube-controller-manager kube-scheduler
 systemctl start etcd kube-apiserver kube-controller-manager kube-scheduler
 ```
 
 **MINIONS**
+
 ```
 systemctl enable kube-proxy kubelet docker
 systemctl start kube-proxy kubelet docker
@@ -408,14 +423,17 @@ systemctl start kube-proxy kubelet docker
 
 Check to make sure everything is running...
 **MASTER**
+
 `systemctl status etcd kube-apiserver kube-controller-manager kube-scheduler | grep "(running)" | wc -l`
 > 4
 
 **MINIONS**
+
 `systemctl status kube-proxy kubelet docker  | grep "(running)" | wc -l`
 > 3
 
 **MINIONS**
+
 Check to make sure docker can pull down images and run them...
 ```
 docker images
@@ -424,28 +442,30 @@ docker pull hello-world
 docker run hello-world
 ```
 
-Install and run kubectl from your host machine…
+# Setup Host Machine to Control Cluster
 
-# cd /tmp
-# curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl
-# chmod +x ./kubectl
-# sudo mv ./kubectl /usr/local/bin/kubectl
-# kubectl cluster-info
+### Install and configure kubectl
 
-# vi .kube/config
+The following steps are **not** done in the VMs, they are performed on your host machine.  You'll be installing kubectl, a command line interface tool that is able to communicate and control the kubernetes cluster you just created.
+
+```
+sudo su
+cd /tmp
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+```
+
+Create the configuration file kubectl requires to understand where your cluster is located...
+
+`vi .kube/config`
+~~~~
 apiVersion: v1
 clusters:
 - cluster:
-    server: http://172.28.128.3:8080
-  name: localvm
-- cluster:
-    server: http://172.28.128.6:8080
+    server: http://<MASTER IP ADDRESS>:8080
   name: sl
 contexts:
-- context:
-    cluster: localvm
-    user: localvm
-  name: localvm
 - context:
     cluster: sl
     user: sl
@@ -458,24 +478,63 @@ users:
   user:
     password: password
     username: admin
+~~~~
 
-Test your deployment…
-# cd ~/Documents/projects/serverless
-# mkdir helloworld && cd helloworld
-# vi server.js
-var http = require('http');
+Run kubectl command to see if your cluster will respond...
 
-var handleRequest = function(request, response) {
-  console.log('Received request for URL: ' + request.url);
-  response.writeHead(200);
-  response.end('Hello World!');
-};
-var www = http.createServer(handleRequest);
-www.listen(8080);
+`kubectl cluster-info`
 
-# node server.js
-	goto http://localhost:8080/ to test
-# <ctrl-c>
+Should return:
+> Kubernetes master is running at http://<MASTER IP ADDRESS>:8080
+
+`kubectl get nodes`
+
+Should return:
+~~~~
+NAME      STATUS    ROLES     AGE       VERSION
+minion1   Ready     <none>    1d        v1.8.3
+minion2   Ready     <none>    1h        v1.8.3
+~~~~
+
+If you're seeing this, congratulations you successfully installed and configured a Kubernetes cluster on your local environment.
+
+# Running Containerized Applications
+
+In order to test our cluster, we'll take a simple Node.js application, containerize it with Docker and deploy it to our cluster using kubectl.
+
+If you cloned the git repository you'll have access to all the files this step requires.  The steps outlined below will take place on your **HOST** machine, not the VMs unless otherwise stated.
+
+### Install Node and Docker
+
+* Go to the [Node.js Downloads](https://nodejs.org/en/download/) page
+* Download Node.js for macOS by clicking the "Macintosh Installer" option
+* Run the downloaded Node.js .pkg Installer
+* Run the installer, including accepting the license, selecting the destination, and authenticating for the install.
+* You're finished! To ensure Node.js has been installed, run `node -v` in your terminal - you should get something like `v6.9.4`
+
+The Docker install can be done from the command line on your host machine...
+
+`yum install -y docker`
+
+Run the same validation steps you performed in your VMs when you installed Docker on your minion machines...
+
+```
+docker images
+docker --version
+docker pull hello-world
+docker run hello-world
+```
+
+### Run the Node application locally
+
+```
+cd ~/Documents/projects/serverless-on-kubernetes/sl-test
+node server.js
+```
+To test the application, open a browser and go to http://localhost:8080/.  If you see "Hello World!"" in your browser, it's worked properly.  Back in the terminal where you ran the `node server.js` command press `<ctrl-c>` to terminate the application.
+
+###
+
 # vi Dockerfile
 FROM node:6.9.2
 EXPOSE 8080
@@ -634,6 +693,10 @@ Deploy the container to your new cluster…
 
 Test your deployment by navigating to http://<IP of your MINION>:31008/
 
+
+# Fission Installation and Configuration
+# Kanali Installation and Configuration
+# Running Serverless Functions
 
 Switching kubectl between k8 clusters
 $ vi ~/.kube/config
