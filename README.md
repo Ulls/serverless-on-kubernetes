@@ -85,7 +85,7 @@ Copy the IP address on the eth1.  Do this for both VMs.  Edit the three /etc/hos
 <IP of minion2>   minion2
 ```
 
-##### Kubernetes Installation and Configuration
+# Kubernetes Installation and Configuration
 ###### Install helper software and disable selinux
 The following steps will apply to both the master and two minions.  It will be noted where there are differences.  In a Kubernetes cluster, the master and the minions require different software installed and configured.  This walkthrough will differentiate those for you.
 
