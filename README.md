@@ -181,190 +181,216 @@ KUBE_ETCD_SERVERS="--etcd-servers=http://master:2379"
 
 **MASTER**
 `vi /etc/kubernetes/kubelet`
-> KUBELET_ADDRESS="--address=127.0.0.1"
-> KUBELET_HOSTNAME="--hostname-override=127.0.0.1"
-> KUBELET_API_SERVER="--api-servers=http://127.0.0.1:8080"
->  KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"
-> KUBELET_ARGS=""
+~~~~
+KUBELET_ADDRESS="--address=127.0.0.1"
+KUBELET_HOSTNAME="--hostname-override=127.0.0.1"
+KUBELET_API_SERVER="--api-servers=http://127.0.0.1:8080"
+KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"
+KUBELET_ARGS=""
+~~~~
 
 **MINIONS**
 `vi /etc/kubernetes/kubelet`
-> KUBELET_ADDRESS="--address=0.0.0.0"
-> KUBELET_PORT="--port=10250"
-> KUBELET_HOSTNAME="--hostname-override=<MINION1 or MINION2>"
-> #KUBELET_API_SERVER="--api-servers=http://master:8080"
-> #KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"
-> KUBELET_KUBECONFIG="--kubeconfig=/etc/kubernetes/kubeconfig --require-kubeconfig"
-> KUBELET_ARGS="--fail-swap-on=false --require-kubeconfig --cgroup-driver=systemd"
+~~~~
+KUBELET_ADDRESS="--address=0.0.0.0"
+KUBELET_PORT="--port=10250"
+KUBELET_HOSTNAME="--hostname-override=<MINION1 or MINION2>"
+#KUBELET_API_SERVER="--api-servers=http://master:8080"
+#KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"
+KUBELET_KUBECONFIG="--kubeconfig=/etc/kubernetes/kubeconfig --require-kubeconfig"
+KUBELET_ARGS="--fail-swap-on=false --require-kubeconfig --cgroup-driver=systemd"
+~~~~
 
 **MINIONS**
 `vi /etc/kubernetes/kubeconfig`
-> apiVersion: v1
-> clusters:
-> - cluster:
->     server: http://master:8080
->   name: sl
-> contexts:
-> - context:
->     cluster: sl
->     user: sl
->   name: sl
-> current-context: sl
-> kind: Config
-> preferences: {}
-> users:
-> - name: cluster-admin
->   user:
->     password: password
->     username: admin
+~~~~
+apiVersion: v1
+clusters:
+- cluster:
+   server: http://master:8080
+ name: sl
+contexts:
+- context:
+   cluster: sl
+   user: sl
+ name: sl
+current-context: sl
+kind: Config
+preferences: {}
+users:
+- name: cluster-admin
+ user:
+   password: password
+   username: admin
+~~~~
 
 **MASTER**
 `vi /etc/kubernetes/apiserver`
-> KUBE_ETCD_SERVERS="--etcd-servers=http://127.0.0.1:2379"
-> KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.254.0.0/16"
-> #KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota"
-> KUBE_API_ARGS=""
-> ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
-> ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
-> KUBE_API_ADDRESS="--address=0.0.0.0"
-> KUBE_API_PORT="--port=8080"
-> KUBELET_PORT="--kubelet-port=10250"
+~~~~
+KUBE_ETCD_SERVERS="--etcd-servers=http://127.0.0.1:2379"
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.254.0.0/16"
+#KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota"
+KUBE_API_ARGS=""
+ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
+ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
+KUBE_API_ADDRESS="--address=0.0.0.0"
+KUBE_API_PORT="--port=8080"
+KUBELET_PORT="--kubelet-port=10250"
+~~~~
 
 **MASTER**
 `vi /etc/kubernetes/controller-manager`
-> KUBE_CONTROLLER_MANAGER_ARGS=""
+~~~~
+KUBE_CONTROLLER_MANAGER_ARGS=""
+~~~~
 
 **MASTER**
 `vi /etc/kubernetes/scheduler`
-> KUBE_SCHEDULER_ARGS=""
+~~~~
+KUBE_SCHEDULER_ARGS=""
+~~~~
 
 **MASTER and MINIONS**
 `vi /etc/kubernetes/proxy`
-> KUBE_PROXY_ARGS=""
+~~~~
+KUBE_PROXY_ARGS=""
+~~~~
 
 **MASTER**
 `vi /etc/etcd/etcd.conf`
 **ADD** these lines to the end of the file...
-> ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
-> ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
+~~~~
+ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
+ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
+~~~~
 
 Create the service definitions for the kubernetes binaries that need to be run on the **MASTERS**...
 `vi /usr/lib/systemd/system/kube-apiserver.service`
-> [Unit]
-> Description=Kubernetes API Server
-> Documentation=https://github.com/GoogleCloudPlatform/kubernetes
-> After=network.target
-> After=etcd.service
->
-> [Service]
-> EnvironmentFile=-/etc/kubernetes/config
-> EnvironmentFile=-/etc/kubernetes/apiserver
-> User= root
-> ExecStart=/usr/bin/kube-apiserver \
->             $KUBE_LOGTOSTDERR \
->             $KUBE_LOG_LEVEL \
->             $KUBE_ETCD_SERVERS \
->             $KUBE_API_ADDRESS \
->             $KUBE_API_PORT \
->             $KUBELET_PORT \
->             $KUBE_ALLOW_PRIV \
->             $KUBE_SERVICE_ADDRESSES \
->             $KUBE_ADMISSION_CONTROL \
->             $KUBE_API_ARGS
-> Restart=on-failure
-> Type=notify
-> LimitNOFILE=65536
->
-> [Install]
-> WantedBy=multi-user.target
+~~~~
+[Unit]
+Description=Kubernetes API Server
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+After=network.target
+After=etcd.service
+
+[Service]
+EnvironmentFile=-/etc/kubernetes/config
+EnvironmentFile=-/etc/kubernetes/apiserver
+User= root
+ExecStart=/usr/bin/kube-apiserver \
+           $KUBE_LOGTOSTDERR \
+           $KUBE_LOG_LEVEL \
+           $KUBE_ETCD_SERVERS \
+           $KUBE_API_ADDRESS \
+           $KUBE_API_PORT \
+           $KUBELET_PORT \
+           $KUBE_ALLOW_PRIV \
+           $KUBE_SERVICE_ADDRESSES \
+           $KUBE_ADMISSION_CONTROL \
+           $KUBE_API_ARGS
+Restart=on-failure
+Type=notify
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+~~~~
 
 `vi /usr/lib/systemd/system/kube-controller-manager.service`
-> [Unit]
-> Description=Kubernetes Controller Manager
-> Documentation=https://github.com/GoogleCloudPlatform/kubernetes
->
-> [Service]
-> EnvironmentFile=-/etc/kubernetes/config
-> EnvironmentFile=-/etc/kubernetes/controller-manager
-> User= root
-> ExecStart=/usr/bin/kube-controller-manager \
->             $KUBE_LOGTOSTDERR \
->             $KUBE_LOG_LEVEL \
->             $KUBE_MASTER \
->             $KUBE_CONTROLLER_MANAGER_ARGS
-> Restart=on-failure
-> LimitNOFILE=65536
->
-> [Install]
-> WantedBy=multi-user.target
+~~~~
+[Unit]
+Description=Kubernetes Controller Manager
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+
+[Service]
+EnvironmentFile=-/etc/kubernetes/config
+EnvironmentFile=-/etc/kubernetes/controller-manager
+User= root
+ExecStart=/usr/bin/kube-controller-manager \
+           $KUBE_LOGTOSTDERR \
+           $KUBE_LOG_LEVEL \
+           $KUBE_MASTER \
+           $KUBE_CONTROLLER_MANAGER_ARGS
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+~~~~
 
 `vi /usr/lib/systemd/system/kube-scheduler.service`
-> [Unit]
-> Description=Kubernetes Scheduler Plugin
-> Documentation=https://github.com/GoogleCloudPlatform/kubernetes
->
-> [Service]
-> EnvironmentFile=-/etc/kubernetes/config
-> EnvironmentFile=-/etc/kubernetes/scheduler
-> User=root
-> ExecStart=/usr/bin/kube-scheduler \
->             $KUBE_LOGTOSTDERR \
->             $KUBE_LOG_LEVEL \
->             $KUBE_MASTER \
->             $KUBE_SCHEDULER_ARGS
-> Restart=on-failure
-> LimitNOFILE=65536
->
-> [Install]
-> WantedBy=multi-user.target
+~~~~
+[Unit]
+Description=Kubernetes Scheduler Plugin
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+
+[Service]
+EnvironmentFile=-/etc/kubernetes/config
+EnvironmentFile=-/etc/kubernetes/scheduler
+User=root
+ExecStart=/usr/bin/kube-scheduler \
+           $KUBE_LOGTOSTDERR \
+           $KUBE_LOG_LEVEL \
+           $KUBE_MASTER \
+           $KUBE_SCHEDULER_ARGS
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+~~~~
 
 Create the service definitions for the kubernetes binaries that need to be run on the **MINIONS**...
 `vi /usr/lib/systemd/system/kubelet.service`
-> [Unit]
-> Description=Kubernetes Kubelet Server
-> Documentation=https://github.com/GoogleCloudPlatform/kubernetes
-> After=docker.service
-> Requires=docker.service
->
-> [Service]
-> WorkingDirectory=/var/lib/kubelet
-> EnvironmentFile=-/etc/kubernetes/config
-> EnvironmentFile=-/etc/kubernetes/kubelet
-> User=root
-> ExecStart=/usr/bin/kubelet \
->             $KUBE_LOGTOSTDERR \
->             $KUBE_LOG_LEVEL \
->             $KUBELET_KUBECONFIG \
->             $KUBELET_ADDRESS \
->             $KUBELET_PORT \
->             $KUBELET_HOSTNAME \
->             $KUBE_ALLOW_PRIV \
->             $KUBELET_POD_INFRA_CONTAINER \
->             $KUBELET_ARGS
-> Restart=on-failure
->
-> [Install]
-> WantedBy=multi-user.target
+~~~~
+[Unit]
+Description=Kubernetes Kubelet Server
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+After=docker.service
+Requires=docker.service
+
+[Service]
+WorkingDirectory=/var/lib/kubelet
+EnvironmentFile=-/etc/kubernetes/config
+EnvironmentFile=-/etc/kubernetes/kubelet
+User=root
+ExecStart=/usr/bin/kubelet \
+           $KUBE_LOGTOSTDERR \
+           $KUBE_LOG_LEVEL \
+           $KUBELET_KUBECONFIG \
+           $KUBELET_ADDRESS \
+           $KUBELET_PORT \
+           $KUBELET_HOSTNAME \
+           $KUBE_ALLOW_PRIV \
+           $KUBELET_POD_INFRA_CONTAINER \
+           $KUBELET_ARGS
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+~~~~
 
 `vi /usr/lib/systemd/system/kube-proxy.service`
-> [Unit]
-> Description=Kubernetes Kube-Proxy Server
-> Documentation=https://github.com/GoogleCloudPlatform/kubernetes
-> After=network.target
->
-> [Service]
-> EnvironmentFile=-/etc/kubernetes/config
-> EnvironmentFile=-/etc/kubernetes/proxy
-> ExecStart=/usr/bin/kube-proxy \
->             $KUBE_LOGTOSTDERR \
->             $KUBE_LOG_LEVEL \
->             $KUBE_MASTER \
->             $KUBE_PROXY_ARGS
-> Restart=on-failure
-> LimitNOFILE=65536
->
-> [Install]
-> WantedBy=multi-user.target
+~~~~
+[Unit]
+Description=Kubernetes Kube-Proxy Server
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/kubernetes/config
+EnvironmentFile=-/etc/kubernetes/proxy
+ExecStart=/usr/bin/kube-proxy \
+           $KUBE_LOGTOSTDERR \
+           $KUBE_LOG_LEVEL \
+           $KUBE_MASTER \
+           $KUBE_PROXY_ARGS
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+~~~~
 
 Start everything up…
 **MASTER**
