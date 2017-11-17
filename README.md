@@ -16,7 +16,7 @@ When complete, you'll be able to create a serverless envrionment capable of runn
 
 ## Walkthrough
 1. [Environment and VM Setup](#environment-and-vm-setup)
-2. [Kubernetes Installation and Configuration](#Kubernetes-Installation-and-Configuration)
+2. [Kubernetes Installation and Configuration](#kubernetes-installation-and-configuration)
 3. [Setup Host Machine to Control Cluster](#)
 4. [Containerized Application Deployment](#)
 5. [Fission Installation and Configuration](#)
