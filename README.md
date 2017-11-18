@@ -1,4 +1,4 @@
-# Setup an local, on premises environment to run lambda like microservice functions on a kubernetes cluster
+# Setup a local, on premises environment to run lambda like microservice functions on a kubernetes cluster
 
 > This repository houses a few example applications to run on a kubernetes cluster in the traditional containerized method and functions to run as microservices in a kubernetes "serverless" environment.  This README file walks a user through the steps of setting up the Kubernetes cluster and deploying the applications.
 
