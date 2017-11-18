@@ -71,13 +71,13 @@ Repeat these configuration steps starting at "Configure the CentOS VMs" to creat
 
 ### SSH into your VMs and edit the host files so they can communicate.
 ```
-cd ~/Documents/local/vagrant/centos7-01
+cd ~/Documents/serverless-on-kubernetes/master
 vagrant ssh
 sudo su
 ip address show
 ```
 
-Copy the IP address on the eth1.  Do this for both VMs.  Edit the three /etc/hosts files, the 2 VMs and the host machine so that you can reference these machines by name.
+Copy the IP address on the eth1.  Do this for all your VMs.  Edit the each VMs /etc/hosts files and enter so that you can reference these machines by name.
 `vi /etc/hosts` and add...
 ```
 <IP of master>    master
@@ -101,9 +101,10 @@ sudo su
 yum install -y wget
 yum install -y ntp
 yum install -y etcd
+yum install -y net-tools
 ```
-ntp and etcd are essential to Kubernetes.  We'll run those later on.
-Time to disable selinux...
+ntp and etcd are essential to Kubernetes.  We'll run those later on.  Time to disable selinux...
+
 `vi /etc/sysconfig/selinux`... edit this file like so:
 ~~~~~
 #SELINUX=enabled
@@ -533,171 +534,97 @@ node server.js
 ```
 To test the application, open a browser and go to http://localhost:8080/.  If you see "Hello World!"" in your browser, it's worked properly.  Back in the terminal where you ran the `node server.js` command press `<ctrl-c>` to terminate the application.
 
-###
+### Containerize the application
 
-# vi Dockerfile
-FROM node:6.9.2
-EXPOSE 8080
-COPY server.js .
-CMD node server.js
+When you containerize this server.js application to be deployed to your cluster, the cluster is going to have to know where to get the container from.  There are a few ways of doing this, but an easy one is to create a local docker repository running on your machine to host the containers.  This will require a few additional setup steps, but it keeps the process entirely local to your machine.
 
-# docker build -t helloworld:v1 .
-# docker login
-	enter username/password
-# docker tag helloworld:v1 ulls/helloworld:v1
-# docker push ulls/helloworld:v1
+#### Create a local Docker repository
 
-
-$ mkdir sl-test && cd sl-test
-$ vi server.js
-var http = require('http');
-
-var handleRequest = function(request, response) {
-  console.log('Received request for URL: ' + request.url);
-  response.writeHead(200);
-  response.end('Hello World!');
-};
-
-console.log('Starting Server on port 8080...');
-var www = http.createServer(handleRequest).listen(8080, function(){
-    console.log('OK. HTTP server started');
-});
-
-var sockets = {}, nextSocketId = 0;
-www.on('connection', function (socket) {
-    var socketId = nextSocketId++;
-    sockets[socketId] = socket;
-    console.log('socket', socketId, 'opened');
-
-    socket.on('close', function () {
-        console.log('socket', socketId, 'closed');
-        delete sockets[socketId];
-    });
-});
-
-var end = function(){
-    www.close(function () {
-        console.log('...app is shutting down');
-        process.exit(0);
-    });
-    for (var socketId in sockets) {
-        console.log('socket connection', socketId, 'destroyed');
-        sockets[socketId].destroy();
-    }
-};
-process.on('SIGTERM', function () {
-    console.log('SIGTERM issued... ');
-    end();
-});
-
-process.on('SIGINT', function() {
-    console.log('SIGINT issued... ');
-    end();
-});
-
-$ vi Dockerfile
-FROM node:6.9.2
-EXPOSE 8080
-COPY server.js .
-CMD node server.js
-
-Create a local docker repo…
-Create a local Docker registry to deploy your container to
-$ docker run -d \
+```
+docker run -d \
   -p 5000:5000 \
   --restart=always \
   --name registry \
   registry:2
-Get the new image id
-$ docker images | grep java-test
-(<image id> = 12 random characters)
-$ docker tag <image id> localhost:5000/java-test:0.1
-$ docker push 127.0.0.1:5000/java-test:0.1
-Check to see that your image has been pushed to the local registry
-$ curl http://127.0.0.1:5000/v2/_catalog
+curl http://127.0.0.1:5000/v2/_catalog
+```
+The result of the `curl` command should return something other than an error.  When you push an image to the repo, this command will report more information.
 
-In your Vagrant VM running a K8 minion, find the default gateway to talk to the host OS
-# sudo yum install net-tools
-# netstat -rn
+Now that you have a local Docker repository running, you need to tell the **MINION** VMs in your cluster how to communicate with it.
+
+By now you should know how to get into the command line interface of each of your minions (`vagrant ssh`).  Access your minions and find the default gateway to talk to the host OS...
+
+Starting on the host...
+
+```
+cd ~/Documents/serverless-on-kubernetes/minion1
+vagrant ssh
+sudo su
+netstat -rn
+```
+~~~~
 Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
 0.0.0.0         10.0.2.2        0.0.0.0         UG        0 0          0 eth0
-Check to see you can access host OS local repository
-# curl http://10.0.2.2:5000/v2/_catalog
+~~~~
+Check to see you can access host OS local repository by running `curl http://10.0.2.2:5000/v2/_catalog`
 
-In order for the minion to be able to pull the local image, you need to tell Docker to allow for insecure connections to repositories.
-Create or modify /etc/docker/daemon.json
+In order for the minion to be able to pull the image from your host Docker repo, you need to tell Docker on the minions to allow for insecure connections to repositories.
+`vi /etc/docker/daemon.json`
+Add the following line...
+~~~~
 { "insecure-registries":["docker.for.mac.localhost:5000","10.0.2.2:5000","local-docker-repo:5000"] }
+~~~~
 Restart docker daemon
-# sudo service docker restart
-Add an entry to your minion’s /etc/hosts file...
-# vi /etc/hosts
+`sudo service docker restart`
+Now, alias the route back to the host by adding an entry to your minion’s /etc/hosts file...
+`vi /etc/hosts`
+Add the line...
+~~~~
 	10.0.2.2        local-docker-repo
-# curl http://local-docker-repo:5000/v2/_catalog
+~~~~
+Test the access to the host's Docker repo from the minion(s) by running `curl http://local-docker-repo:5000/v2/_catalog`
 
-Containerize your server.js app into a docker container…
-$ docker build -t local-docker-repo:5000/sl-test .
-$ docker tag local-docker-repo:5000/sl-test local-docker-repo:5000/sl-test:0.1
-$ docker push local-docker-repo:5000/sl-test
+Repeat this process for the other minion node in your cluster.
 
-$ docker tag sl-test:latest ulls/sl-test:0
-$ docker push ulls/sl-test
-$ kubectl run sl-test --image=docker pull ulls/sl-test:0 --port=8080
+#### Create the container for server.js
 
+We'll use the Docker file in the sl-test directory to create the Docker container for server.js.  You can review the contents of that file by running `vi ~/Documents/projects/serverless/sl-test/Dockerfile`
 
-Create kubernetes deployment and service yml file…
-## YAML Template.
----
+The `docker` command being run in the following commands references the Docker file in the directory you're running the commands in.  So, be sure to run these commands from the sl-test directory.
+```
+cd ~/Documents/projects/serverless/sl-test/
+docker build -t local-docker-repo:5000/sl-test .
+docker tag local-docker-repo:5000/sl-test local-docker-repo:5000/sl-test:0.1
+docker push local-docker-repo:5000/sl-test
+```
+Now, to test our containerized server.js application in our host before we deploy it to the Kubernetes cluster, run the following command...
+```
+docker run -p 8080:8080 sl-test
+```
+To test the application, open a browser and go to http://localhost:8080/.  If you see "Hello World!" in your browser, it's worked properly.  To exit the application, open another terminal window run `docker ps` and get the running container's **CONTAINER ID**.  Then run `docker kill <CONTAINER ID>`.
 
-kind: Service
-apiVersion: v1
-metadata:
-  name: sl-test
-spec:
-  type: NodePort
-  selector:
-    app: sl-test
-  ports:
-  - name: http
-    protocol: TCP
-    port: 8088
-    targetPort: 8080
-    nodePort: 31008
+#### Deploy the container to your Kubernetes cluster
 
----
+Deploying the containerized application to your Kubernetes cluster can be done from the command line using the kubectl command line interface we installed a few steps back.  We'll create a Kubernets deployment and service definition in a yaml file to assist.  That yaml file is available to you if you cloned the repository and located at ~/Documents/projects/serverless/sl-test/k8.yml
 
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: sl-test
-  labels:
-    app: sl-test
-    environment: local
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: sl-test
-  template:
-    metadata:
-      labels:
-        app: sl-test
-    spec:
-      containers:
-      - name: sl-test
-        image: local-docker-repo:5000/sl-test:latest
-        imagePullPolicy: Always
-        ports:
-          - containerPort: 8080
+For more information about the contents of this file, please see the Kubernetes documentation about [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) and [Services](https://kubernetes.io/docs/concepts/services-networking/service/).
 
-Deploy the container to your new cluster…
+Run the following commands to deploy your containerized server.js application to your local Kubernetes cluster...
+```
+cd ~/Documents/projects/serverless/sl-test/
+kubectl create -f k8.yml
+```
 
-Test your deployment by navigating to http://<IP of your MINION>:31008/
-
+Test your deployment by navigating to http://<IP of your MINION>:31008/.  You should see the same "Hello World!" message you saw in the previous steps.
 
 # Fission Installation and Configuration
+
+Coming
+
 # Kanali Installation and Configuration
+
+Coming
+
 # Running Serverless Functions
 
-Switching kubectl between k8 clusters
-$ vi ~/.kube/config
-$ kubectl config use-context <context name>
+Coming
