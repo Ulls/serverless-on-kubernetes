@@ -619,7 +619,58 @@ Test your deployment by navigating to http://<IP of your MINION>:31008/.  You sh
 
 # Fission Installation and Configuration
 
-Coming
+Your host machine will require you install Helm, a Kubernetes package manager and installer.  On the host install the Helm command line interface...
+```
+cd /tmp
+curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.7.2-darwin-amd64.tar.gz
+tar xzf helm-v2.7.2-darwin-amd64.tar.gz
+mv darwin-amd64/helm /usr/local/bin
+```
+...next install Helm on your Kubernetes cluster...
+```
+kubectl -n kube-system create sa tiller
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+helm init --service-account tiller
+```
+Helm needs a slight adjustment to make sure it can talk to your API server on your master node.  Run `kubectl get pods -n kube-system` to get the name of your running tiller pod.  You then need to set the KUBERNETES_MASTER environment variable so tiller knows where your API server is in you cluster.  Do this by getting the deployment yaml for the tiller pod, updating the contents to add the environment variable name and value, then applying the yaml to perform a rolling update of the pod.
+```
+kubectl get deployment tiller-deploy -n kube-system -o yaml > tiller-deploy.yaml
+vi tiller-deploy.yaml
+```
+Alter the containers, env section to include a new KUBERNETES_MASTER section.  The value of the variable is the IP address and port to your API server running on your master node.  In the previous steps you had to set that value in your minions /etc/hosts files so you can get it from there if you forgot what that IP address is.
+```
+containers:
+- env:
+  - name: KUBERNETES_MASTER
+    value: http://<IP ADDRESS OF MASTER NODE>:8080
+  - name: TILLER_NAMESPACE
+```    
+Run `kubectl apply -f tiller-deploy.yaml --record` to apply the update to the environment variable.
+Check to see that the new environment variable exists by running `kubectl exec tiller-deploy-<CUSTOM TO YOUR CLUSTER> -n kube-system env`
+
+
+Access your two minion machines command line interface and install socat on each.  Socat is a relay for bidirectional data transfer between two independent data channels, as is required for Fission to run properly on your Kubernetes cluster.  Perform the following steps to install socat on each minion...
+```
+sudo su
+cd /tmp
+wget http://ftp.tu-chemnitz.de/pub/linux/dag/redhat/el6/en/x86_64/rpmforge/RPMS/socat-1.7.2.4-1.el6.rf.x86_64.rpm
+rpm -Uvh socat-1.7.2.4-1.el6.rf.x86_64.rpm
+yum install -y socat
+```
+
+Finally, we're ready to install Fission.
+```
+helm install --namespace fission --set serviceType=NodePort https://github.com/fission/fission/releases/download/0.3.0/fission-all-0.3.0.tgz
+```
+Install the Fission command line interface...
+```
+curl -Lo fission https://github.com/fission/fission/releases/download/0.3.0/fission-cli-osx && chmod +x fission && sudo mv fission /usr/local/bin/
+```
+export FISSION_URL=http://172.28.128.6:31313
+export FISSION_ROUTER=172.28.128.6:31314
+fission env create --name nodejs --image fission/node-env
+
+
 
 # Kanali Installation and Configuration
 
