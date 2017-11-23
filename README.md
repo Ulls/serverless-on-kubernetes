@@ -127,6 +127,20 @@ sestatus
 ```
 If sestatus reports "disabled", move on.
 
+# Setup Host Machine to Control Cluster
+
+### Install and configure kubectl
+
+The following steps are **not** done in the VMs, they are performed on your host machine.  You'll be installing kubectl, a command line interface tool that is able to communicate and control the kubernetes cluster you just created.
+
+```
+sudo su
+cd /tmp
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+```
+
 ### Install and configure Kubernetes
 
 The following steps are done inside of you VMs, so `cd` to each directory and repeat these steps for each, keeping in mind the differences between the master and the minions.  Again, `vagrant ssh` to access the VM's command line.  Then, perform the following steps...
@@ -171,6 +185,85 @@ If you're on a minion, you're going to need to install docker...
 
 `yum install -y docker`
 
+### Securing the Kubernetes cluster
+
+We're going to create a top level domain for our cluster (internally) a CA to create certificates for each node (master and minion) in the cluster and the certificates themselves.
+
+Access the master node `cd ~/Documents/serverless/master && vagrant ssh` and become root `sudo su`.  The first thing we'll do is create the CA we'll use to generate the certs for our cluster...
+```
+mkdir /tmp/ca && cd /tmp/ca
+wget https://s3.amazonaws.com/nm-dev-utilities/EasyRSA-3.0.0.tgz
+tar zxvf EasyRSA-3.0.0.tgz -C /tmp/ca
+cd EasyRSA-3.0.0/
+./easyrsa init-pki
+./easyrsa --batch "--req-cn=<IP OF YOUR MASTER>@`date +%s`" build-ca nopass
+
+./easyrsa --subject-alt-name="IP:<IP OF YOUR MASTER>,"\
+"IP:10.254.0.0,"\
+"DNS:kubernetes,"\
+"DNS:kubernetes.default,"\
+"DNS:kubernetes.default.svc,"\
+"DNS:kubernetes.default.svc.cluster,"\
+"DNS:kubernetes.default.svc.cluster.local" \
+--days=10000 \
+build-server-full server nopass
+
+mkdir /srv/kubernetes/
+cp pki/ca.crt /srv/kubernetes/
+cp pki/private/ca.key /srv/kubernetes/
+cp pki/issued/server.crt /srv/kubernetes/
+cp pki/private/server.key /srv/kubernetes/
+```
+[more info](https://kubernetes.io/docs/concepts/cluster-administration/certificates/)
+
+### Setup Minion (Node) Security
+
+```
+for NODE in $NODES; do
+    openssl req -newkey rsa:2048 -nodes -keyout /srv/kubernetes/${NODE}.key -subj "/CN=${NODE}" -out /srv/kubernetes/${NODE}.csr
+      openssl x509 -req -days 10000 -in /srv/kubernetes/${NODE}.csr -CA /srv/kubernetes/ca.crt -CAkey /srv/kubernetes/ca.key -CAcreateserial -out /srv/kubernetes/${NODE}.crt
+  done
+```
+These files need to be copied into each of your minions.  An easy way to do this is to just copy and paste the contents of the file into files on the minions...
+
+On each minion...
+```
+mkdir /srv/kubernetes
+vi /srv/kubernetes/ca.crt
+vi /srv/kubernetes/minion.key
+vi /srv/kubernetes/minion.crt
+```
+From the master you need to populate these files from these files on the master...
+```
+/srv/kubernetes/ca.crt
+/srv/kubernetes/${NODE}.key
+/srv/kubernetes/${NODE}.crt
+```
+
+```
+kubectl config set-cluster sl --server=https://172.28.128.6:6443 --insecure-skip-tls-verify=true
+kubectl config unset clusters
+kubectl config set-cluster sl --certificate-authority=/srv/kubernetes/k8ca.crt --embed-certs=true --server=https://172.28.128.6:6443
+kubectl config set-credentials kubelet --client-certificate=/srv/kubernetes/172.28.128.9.crt --client-key=/srv/kubernetes/172.28.128.9.key --embed-certs=true --token=jo2ZmiPYqpxvTmfCTEMppteB5vxPTe0L
+kubectl config set-context service-account-context --cluster=sl --user=kubelet
+kubectl config use-context service-account-context
+```
+Take the content in the generated .kube/config file and put it on the node you configured it for...
+On the minion...
+```
+cp /etc/kubernetes/kubeconfig /etc/kubernetes/kubeconfig.`date "+%Y%m%d"`.bak
+vi /etc/kubernetes/kubeconfig
+```
+...and paste the contents of the file on your host machine where you generated the .kube/config file (note, you need to be in the same directory you ran the `kubectl config` commands)...
+On the host...
+```
+vi .kube/config
+```
+Copy the contents from (master) .kube/config -> /etc/kubernetes/kubeconfig (minion).
+
+
+### Config files for kubernetes binaries
+
 When you run the binary files you copied to the /usr/bin directory a couple of steps ago, they're going to read in variables from the files you're about to create now.  The first command will be what file to create and edit (using vi) followed by the text to place in the file.  
 
 **MASTER and MINIONS**
@@ -202,7 +295,7 @@ KUBELET_ARGS=""
 KUBELET_ADDRESS="--address=0.0.0.0"
 KUBELET_PORT="--port=10250"
 KUBELET_HOSTNAME="--hostname-override=<MINION1 or MINION2>"
-#KUBELET_API_SERVER="--api-servers=http://master:8080"
+KUBELET_API_SERVER="--api-servers=https://master:6443"
 #KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"
 KUBELET_KUBECONFIG="--kubeconfig=/etc/kubernetes/kubeconfig --require-kubeconfig"
 KUBELET_ARGS="--fail-swap-on=false --require-kubeconfig --cgroup-driver=systemd"
@@ -238,12 +331,12 @@ users:
 ~~~~
 KUBE_ETCD_SERVERS="--etcd-servers=http://127.0.0.1:2379"
 KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.254.0.0/16"
-#KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota"
-KUBE_API_ARGS=""
+KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota"
+KUBE_API_ARGS="--client-ca-file=/srv/kubernetes/ca.crt --tls-cert-file=/srv/kubernetes/server.crt --tls-private-key-file=/srv/kubernetes/server.key --token_auth_file=/srv/kube-apiserver/known_tokens.csv --kubelet-https=true"
 ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"
 ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"
-KUBE_API_ADDRESS="--address=0.0.0.0"
-KUBE_API_PORT="--port=8080"
+KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0"
+KUBE_API_PORT="--insecure-port=8080"
 KUBELET_PORT="--kubelet-port=10250"
 ~~~~
 
@@ -251,7 +344,7 @@ KUBELET_PORT="--kubelet-port=10250"
 
 `vi /etc/kubernetes/controller-manager`
 ~~~~
-KUBE_CONTROLLER_MANAGER_ARGS=""
+KUBE_CONTROLLER_MANAGER_ARGS="--root-ca-file=/srv/kubernetes/ca.crt --service-account-private-key-file=/srv/kubernetes/server.key --cluster-signing-cert-file="/srv/kubernetes/ca.crt" --cluster-signing-key-file="/srv/kubernetes/ca.key --node-monitor-grace-period=20s --pod-eviction-timeout=20s"
 ~~~~
 
 **MASTER**
@@ -261,7 +354,14 @@ KUBE_CONTROLLER_MANAGER_ARGS=""
 KUBE_SCHEDULER_ARGS=""
 ~~~~
 
-**MASTER and MINIONS**
+**MINIONS**
+
+`vi /etc/kubernetes/proxy`
+~~~~
+KUBE_PROXY_ARGS="--kubeconfig=/etc/kubernetes/kubeconfig"
+~~~~
+
+**MASTER**
 
 `vi /etc/kubernetes/proxy`
 ~~~~
@@ -442,62 +542,15 @@ docker --version
 docker pull hello-world
 docker run hello-world
 ```
-
-# Setup Host Machine to Control Cluster
-
-### Install and configure kubectl
-
-The following steps are **not** done in the VMs, they are performed on your host machine.  You'll be installing kubectl, a command line interface tool that is able to communicate and control the kubernetes cluster you just created.
-
+Check to see if security is working using the certificates...
 ```
-sudo su
-cd /tmp
-curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
+curl -k --key /srv/kubernetes/minion.key  --cert /srv/kubernetes/minion.crt  --cacert /srv/kubernetes/ca.crt https://master:6443/version
 ```
-
-Create the configuration file kubectl requires to understand where your cluster is located...
-
-`vi .kube/config`
-~~~~
-apiVersion: v1
-clusters:
-- cluster:
-    server: http://<MASTER IP ADDRESS>:8080
-  name: sl
-contexts:
-- context:
-    cluster: sl
-    user: sl
-  name: sl
-current-context: sl
-kind: Config
-preferences: {}
-users:
-- name: cluster-admin
-  user:
-    password: password
-    username: admin
-~~~~
-
-Run kubectl command to see if your cluster will respond...
-
-`kubectl cluster-info`
-
-Should return:
-> Kubernetes master is running at http://<MASTER IP ADDRESS>:8080
-
-`kubectl get nodes`
-
-Should return:
-~~~~
-NAME      STATUS    ROLES     AGE       VERSION
-minion1   Ready     <none>    1d        v1.8.3
-minion2   Ready     <none>    1h        v1.8.3
-~~~~
-
-If you're seeing this, congratulations you successfully installed and configured a Kubernetes cluster on your local environment.
+Check to see if security is working using the token...
+```
+curl -k -H "Authorization: Bearer <TOKEN>" https://master:6443/version
+```
+Thanks to a [great guide](https://rootsquash.com/2016/05/10/securing-the-kubernetes-api/) on security setup.
 
 # Running Containerized Applications
 
