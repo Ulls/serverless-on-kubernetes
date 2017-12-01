@@ -1,0 +1,3634 @@
+{
+    "selfLink": "/api/v1/nodes",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "minion1",
+            "selfLink": "/api/v1/nodes/minion1",
+            "uid": "a63be7a5-d3a3-11e7-bbcc-5254007a695a",
+            "resourceVersion": "11972",
+            "creationTimestamp": "2017-11-27T18:49:08Z",
+            "labels": {
+                "beta.kubernetes.io/arch": "amd64",
+                "beta.kubernetes.io/os": "linux",
+                "kubernetes.io/hostname": "minion1"
+            },
+            "annotations": {
+                "node.alpha.kubernetes.io/ttl": "0",
+                "volumes.kubernetes.io/controller-managed-attach-detach": "true"
+            },
+            "Spec": {
+                "PodCIDR": "",
+                "ExternalID": "minion1",
+                "ProviderID": "",
+                "Unschedulable": false,
+                "Taints": null,
+                "ConfigSource": null
+            },
+            "Status": {
+                "Capacity": {
+                    "cpu": "1",
+                    "memory": "500152Ki",
+                    "pods": "110"
+                },
+                "Allocatable": {
+                    "cpu": "1",
+                    "memory": "397752Ki",
+                    "pods": "110"
+                },
+                "Phase": "",
+                "Conditions": [
+                    {
+                        "Type": "OutOfDisk",
+                        "Status": "False",
+                        "LastHeartbeatTime": "2017-11-27T21:33:05Z",
+                        "LastTransitionTime": "2017-11-27T18:49:09Z",
+                        "Reason": "KubeletHasSufficientDisk",
+                        "Message": "kubelet has sufficient disk space available"
+                    },
+                    {
+                        "Type": "MemoryPressure",
+                        "Status": "False",
+                        "LastHeartbeatTime": "2017-11-27T21:33:05Z",
+                        "LastTransitionTime": "2017-11-27T19:53:53Z",
+                        "Reason": "KubeletHasSufficientMemory",
+                        "Message": "kubelet has sufficient memory available"
+                    },
+                    {
+                        "Type": "DiskPressure",
+                        "Status": "False",
+                        "LastHeartbeatTime": "2017-11-27T21:33:05Z",
+                        "LastTransitionTime": "2017-11-27T19:53:53Z",
+                        "Reason": "KubeletHasNoDiskPressure",
+                        "Message": "kubelet has no disk pressure"
+                    },
+                    {
+                        "Type": "Ready",
+                        "Status": "True",
+                        "LastHeartbeatTime": "2017-11-27T21:33:05Z",
+                        "LastTransitionTime": "2017-11-27T19:53:53Z",
+                        "Reason": "KubeletReady",
+                        "Message": "kubelet is posting ready status"
+                    }
+                ],
+                "Addresses": [
+                    {
+                        "Type": "InternalIP",
+                        "Address": "172.28.128.9"
+                    },
+                    {
+                        "Type": "Hostname",
+                        "Address": "minion1"
+                    }
+                ],
+                "DaemonEndpoints": {
+                    "KubeletEndpoint": {
+                        "Port": 10250
+                    }
+                },
+                "NodeInfo": {
+                    "MachineID": "06284cba122d465cb86bbbc383675c7b",
+                    "SystemUUID": "06284CBA-122D-465C-B86B-BBC383675C7B",
+                    "BootID": "c4b914e7-adc8-49a8-97e0-ae8027c93a49",
+                    "KernelVersion": "3.10.0-693.2.1.el7.x86_64",
+                    "OSImage": "CentOS Linux 7 (Core)",
+                    "ContainerRuntimeVersion": "docker://1.12.6",
+                    "KubeletVersion": "v1.8.3",
+                    "KubeProxyVersion": "v1.8.3",
+                    "OperatingSystem": "linux",
+                    "Architecture": "amd64"
+                },
+                "Images": [
+                    {
+                        "Names": [
+                            "docker.io/ulls/sl-test@sha256:61d86233c7b4c93b7baa8f1be5e9fe4c1f9e286c6aa430d045393a8d5f48f731",
+                            "local-docker-repo:5000/sl-test@sha256:3e36c24573600135e43cdd005b2a4e02d931831bd9bed63a46245b735e278031",
+                            "docker.io/ulls/sl-test:0",
+                            "local-docker-repo:5000/sl-test:latest"
+                        ],
+                        "SizeBytes": 655420913
+                    },
+                    {
+                        "Names": [
+                            "docker.io/fission/fluentd@sha256:1f2a410c7b972e36c89e2437769576d8f419b3e33b9b6c6987601108b45ce4fe",
+                            "docker.io/fission/fluentd:latest"
+                        ],
+                        "SizeBytes": 335122205
+                    },
+                    {
+                        "Names": [
+                            "docker.io/tutum/influxdb@sha256:5b7c5e318303ad059f3d1a73d084c12cb39ae4f35f7391b79b0ff2c0ba45304b",
+                            "docker.io/tutum/influxdb:latest"
+                        ],
+                        "SizeBytes": 289648433
+                    },
+                    {
+                        "Names": [
+                            "docker.io/docker@sha256:b2f95f06841fb297252244d9aecbd10e43b4349847db6711ce8ba0d8a1ac77ef",
+                            "docker.io/docker:latest"
+                        ],
+                        "SizeBytes": 99847665
+                    },
+                    {
+                        "Names": [
+                            "gcr.io/kubernetes-helm/tiller@sha256:df7f227fa722afc4931c912c1cad2c47856ec94f4d052ccceebcb16dd483dad8",
+                            "gcr.io/kubernetes-helm/tiller:v2.7.2"
+                        ],
+                        "SizeBytes": 56572780
+                    },
+                    {
+                        "Names": [
+                            "docker.io/fission/fission-bundle@sha256:37b559503326b32e2800b61c1b89ed492be72260715be89cedb57fc6b20e4ba1",
+                            "docker.io/fission/fission-bundle:0.3.0"
+                        ],
+                        "SizeBytes": 51077894
+                    },
+                    {
+                        "Names": [
+                            "docker.io/nats-streaming@sha256:26aa0ee32c898ef7d9f472c2b449b4efd8f815ce42e2cb0afd4ef60ec65fa6b6",
+                            "docker.io/nats-streaming:latest"
+                        ],
+                        "SizeBytes": 8650688
+                    },
+                    {
+                        "Names": [
+                            "gcr.io/google_containers/pause-amd64@sha256:163ac025575b775d1c0f9bf0bdd0f086883171eb475b5068e7defa4ca9e76516",
+                            "gcr.io/google_containers/pause-amd64:3.0"
+                        ],
+                        "SizeBytes": 746888
+                    },
+                    {
+                        "Names": [
+                            "docker.io/hello-world@sha256:cf2f6d004a59f7c18ec89df311cf0f6a1c714ec924eebcbfdd759a669b90e711",
+                            "docker.io/hello-world:latest"
+                        ],
+                        "SizeBytes": 1840
+                    }
+                ],
+                "VolumesInUse": null,
+                "VolumesAttached": null
+            }
+        },
+        {
+            "name": "minion2",
+            "selfLink": "/api/v1/nodes/minion2",
+            "uid": "fe0b8d24-d3a3-11e7-bbcc-5254007a695a",
+            "resourceVersion": "11967",
+            "creationTimestamp": "2017-11-27T18:51:35Z",
+            "labels": {
+                "beta.kubernetes.io/arch": "amd64",
+                "beta.kubernetes.io/os": "linux",
+                "kubernetes.io/hostname": "minion2"
+            },
+            "annotations": {
+                "node.alpha.kubernetes.io/ttl": "0",
+                "volumes.kubernetes.io/controller-managed-attach-detach": "true"
+            },
+            "Spec": {
+                "PodCIDR": "",
+                "ExternalID": "minion2",
+                "ProviderID": "",
+                "Unschedulable": false,
+                "Taints": null,
+                "ConfigSource": null
+            },
+            "Status": {
+                "Capacity": {
+                    "cpu": "1",
+                    "memory": "500152Ki",
+                    "pods": "110"
+                },
+                "Allocatable": {
+                    "cpu": "1",
+                    "memory": "397752Ki",
+                    "pods": "110"
+                },
+                "Phase": "",
+                "Conditions": [
+                    {
+                        "Type": "OutOfDisk",
+                        "Status": "False",
+                        "LastHeartbeatTime": "2017-11-27T21:33:02Z",
+                        "LastTransitionTime": "2017-11-27T18:51:36Z",
+                        "Reason": "KubeletHasSufficientDisk",
+                        "Message": "kubelet has sufficient disk space available"
+                    },
+                    {
+                        "Type": "MemoryPressure",
+                        "Status": "False",
+                        "LastHeartbeatTime": "2017-11-27T21:33:02Z",
+                        "LastTransitionTime": "2017-11-27T20:03:34Z",
+                        "Reason": "KubeletHasSufficientMemory",
+                        "Message": "kubelet has sufficient memory available"
+                    },
+                    {
+                        "Type": "DiskPressure",
+                        "Status": "False",
+                        "LastHeartbeatTime": "2017-11-27T21:33:02Z",
+                        "LastTransitionTime": "2017-11-27T20:03:34Z",
+                        "Reason": "KubeletHasNoDiskPressure",
+                        "Message": "kubelet has no disk pressure"
+                    },
+                    {
+                        "Type": "Ready",
+                        "Status": "True",
+                        "LastHeartbeatTime": "2017-11-27T21:33:02Z",
+                        "LastTransitionTime": "2017-11-27T20:03:34Z",
+                        "Reason": "KubeletReady",
+                        "Message": "kubelet is posting ready status"
+                    }
+                ],
+                "Addresses": [
+                    {
+                        "Type": "InternalIP",
+                        "Address": "10.0.0.3"
+                    },
+                    {
+                        "Type": "Hostname",
+                        "Address": "minion2"
+                    }
+                ],
+                "DaemonEndpoints": {
+                    "KubeletEndpoint": {
+                        "Port": 10250
+                    }
+                },
+                "NodeInfo": {
+                    "MachineID": "ea6229ef9bcd4e7c95ca21b2fa4269c2",
+                    "SystemUUID": "EA6229EF-9BCD-4E7C-95CA-21B2FA4269C2",
+                    "BootID": "92085fcc-805d-41d1-9b0e-81aea9513a82",
+                    "KernelVersion": "3.10.0-693.2.1.el7.x86_64",
+                    "OSImage": "CentOS Linux 7 (Core)",
+                    "ContainerRuntimeVersion": "docker://1.12.6",
+                    "KubeletVersion": "v1.8.3",
+                    "KubeProxyVersion": "v1.8.3",
+                    "OperatingSystem": "linux",
+                    "Architecture": "amd64"
+                },
+                "Images": [
+                    {
+                        "Names": [
+                            "local-docker-repo:5000/sl-test@sha256:3e36c24573600135e43cdd005b2a4e02d931831bd9bed63a46245b735e278031",
+                            "local-docker-repo:5000/sl-test:latest"
+                        ],
+                        "SizeBytes": 655420913
+                    },
+                    {
+                        "Names": [
+                            "docker.io/fission/fluentd@sha256:1f2a410c7b972e36c89e2437769576d8f419b3e33b9b6c6987601108b45ce4fe",
+                            "docker.io/fission/fluentd:latest"
+                        ],
+                        "SizeBytes": 335122205
+                    },
+                    {
+                        "Names": [
+                            "docker.io/tutum/influxdb@sha256:5b7c5e318303ad059f3d1a73d084c12cb39ae4f35f7391b79b0ff2c0ba45304b",
+                            "docker.io/tutum/influxdb:latest"
+                        ],
+                        "SizeBytes": 289648433
+                    },
+                    {
+                        "Names": [
+                            "gcr.io/kubernetes-helm/tiller@sha256:6b561c3bb9fed1b028520cce3852e6c9a6a91161df9b92ca0c3a20ebecc0581a",
+                            "gcr.io/kubernetes-helm/tiller:v2.6.1"
+                        ],
+                        "SizeBytes": 78058641
+                    },
+                    {
+                        "Names": [
+                            "gcr.io/kubernetes-helm/tiller@sha256:df7f227fa722afc4931c912c1cad2c47856ec94f4d052ccceebcb16dd483dad8",
+                            "gcr.io/kubernetes-helm/tiller:v2.7.2"
+                        ],
+                        "SizeBytes": 56572780
+                    },
+                    {
+                        "Names": [
+                            "docker.io/fission/fission-bundle@sha256:37b559503326b32e2800b61c1b89ed492be72260715be89cedb57fc6b20e4ba1",
+                            "docker.io/fission/fission-bundle:0.3.0"
+                        ],
+                        "SizeBytes": 51077894
+                    },
+                    {
+                        "Names": [
+                            "docker.io/fission/alpinecurl@sha256:fd33b23919915379ce335da76b5d1536fde2d262e4639f5c5cb4093115bab5c4",
+                            "docker.io/fission/alpinecurl:latest"
+                        ],
+                        "SizeBytes": 6921977
+                    },
+                    {
+                        "Names": [
+                            "gcr.io/google_containers/pause-amd64@sha256:163ac025575b775d1c0f9bf0bdd0f086883171eb475b5068e7defa4ca9e76516",
+                            "gcr.io/google_containers/pause-amd64:3.0"
+                        ],
+                        "SizeBytes": 746888
+                    },
+                    {
+                        "Names": [
+                            "docker.io/hello-world@sha256:cf2f6d004a59f7c18ec89df311cf0f6a1c714ec924eebcbfdd759a669b90e711",
+                            "docker.io/hello-world:latest"
+                        ],
+                        "SizeBytes": 1840
+                    }
+                ],
+                "VolumesInUse": null,
+                "VolumesAttached": null
+            }
+        }
+    ]
+}
+{
+    "selfLink": "/api/v1/namespaces/kube-system/events",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "tiller-deploy-594bb7655b-hj4qk.14fb0cbeb1cff862",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-594bb7655b-hj4qk.14fb0cbeb1cff862",
+            "uid": "435cfbc9-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9031",
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-594bb7655b-hj4qk",
+                "UID": "435b9a08-d3b5-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "9023",
+                "FieldPath": ""
+            },
+            "Reason": "Scheduled",
+            "Message": "Successfully assigned tiller-deploy-594bb7655b-hj4qk to minion1",
+            "Source": {
+                "Component": "default-scheduler",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T20:55:13Z",
+            "LastTimestamp": "2017-11-27T20:55:13Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-594bb7655b-hj4qk.14fb0cbf1ddc1fa1",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-594bb7655b-hj4qk.14fb0cbf1ddc1fa1",
+            "uid": "437f32a6-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9040",
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-594bb7655b-hj4qk",
+                "UID": "435b9a08-d3b5-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "9024",
+                "FieldPath": ""
+            },
+            "Reason": "SuccessfulMountVolume",
+            "Message": "MountVolume.SetUp succeeded for volume \"tiller-token-lrks6\" ",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:55:14Z",
+            "LastTimestamp": "2017-11-27T20:55:14Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-594bb7655b-hj4qk.14fb0cbf22fd6c34",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-594bb7655b-hj4qk.14fb0cbf22fd6c34",
+            "uid": "438c7a3f-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9097",
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-594bb7655b-hj4qk",
+                "UID": "435b9a08-d3b5-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "9024",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:55:14Z",
+            "LastTimestamp": "2017-11-27T20:55:37Z",
+            "Count": 10,
+            "Type": "Warning"
+        },
+        {
+            "name": "tiller-deploy-594bb7655b-hj4qk.14fb0cbf38c162a3",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-594bb7655b-hj4qk.14fb0cbf38c162a3",
+            "uid": "43c53654-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9096",
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-594bb7655b-hj4qk",
+                "UID": "435b9a08-d3b5-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "9024",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "Pulled",
+            "Message": "Container image \"gcr.io/kubernetes-helm/tiller:v2.7.2\" already present on machine",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:55:15Z",
+            "LastTimestamp": "2017-11-27T20:55:37Z",
+            "Count": 3,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-594bb7655b-hj4qk.14fb0cbf44feb5dc",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-594bb7655b-hj4qk.14fb0cbf44feb5dc",
+            "uid": "43e37152-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9098",
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-594bb7655b-hj4qk",
+                "UID": "435b9a08-d3b5-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "9024",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "Created",
+            "Message": "Created container",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:55:15Z",
+            "LastTimestamp": "2017-11-27T20:55:37Z",
+            "Count": 3,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-594bb7655b-hj4qk.14fb0cbf4e193647",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-594bb7655b-hj4qk.14fb0cbf4e193647",
+            "uid": "43fac49a-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9056",
+            "creationTimestamp": "2017-11-27T20:55:14Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-594bb7655b-hj4qk",
+                "UID": "435b9a08-d3b5-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "9024",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "Started",
+            "Message": "Started container",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:55:15Z",
+            "LastTimestamp": "2017-11-27T20:55:17Z",
+            "Count": 2,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-594bb7655b-hj4qk.14fb0cbfd94018ce",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-594bb7655b-hj4qk.14fb0cbfd94018ce",
+            "uid": "45605fe7-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9075",
+            "creationTimestamp": "2017-11-27T20:55:16Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-594bb7655b-hj4qk",
+                "UID": "435b9a08-d3b5-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "9024",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "BackOff",
+            "Message": "Back-off restarting failed container",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:55:18Z",
+            "LastTimestamp": "2017-11-27T20:55:23Z",
+            "Count": 3,
+            "Type": "Warning"
+        },
+        {
+            "name": "tiller-deploy-594bb7655b-hj4qk.14fb0cbfd943845f",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-594bb7655b-hj4qk.14fb0cbfd943845f",
+            "uid": "455f047e-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "10618",
+            "creationTimestamp": "2017-11-27T20:55:16Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-594bb7655b-hj4qk",
+                "UID": "435b9a08-d3b5-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "9024",
+                "FieldPath": ""
+            },
+            "Reason": "FailedSync",
+            "Message": "Error syncing pod",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:55:18Z",
+            "LastTimestamp": "2017-11-27T21:15:15Z",
+            "Count": 97,
+            "Type": "Warning"
+        },
+        {
+            "name": "tiller-deploy-594bb7655b.14fb0cbeb17aa952",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-594bb7655b.14fb0cbeb17aa952",
+            "uid": "435c753a-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9028",
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "InvolvedObject": {
+                "Kind": "ReplicaSet",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-594bb7655b",
+                "UID": "435a182c-d3b5-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "9019",
+                "FieldPath": ""
+            },
+            "Reason": "SuccessfulCreate",
+            "Message": "Created pod: tiller-deploy-594bb7655b-hj4qk",
+            "Source": {
+                "Component": "replicaset-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T20:55:13Z",
+            "LastTimestamp": "2017-11-27T20:55:13Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-594bb7655b.14fb0e16887f333e",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-594bb7655b.14fb0e16887f333e",
+            "uid": "b397b556-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10975",
+            "creationTimestamp": "2017-11-27T21:19:49Z",
+            "InvolvedObject": {
+                "Kind": "ReplicaSet",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-594bb7655b",
+                "UID": "435a182c-d3b5-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "10960",
+                "FieldPath": ""
+            },
+            "Reason": "SuccessfulDelete",
+            "Message": "Deleted pod: tiller-deploy-594bb7655b-hj4qk",
+            "Source": {
+                "Component": "replicaset-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T21:19:49Z",
+            "LastTimestamp": "2017-11-27T21:19:49Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-6cd46c8668-8txnw.14fb0a4f1c41aeb2",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-6cd46c8668-8txnw.14fb0a4f1c41aeb2",
+            "uid": "0693aea9-d3af-11e7-862b-5254007a695a",
+            "resourceVersion": "8645",
+            "creationTimestamp": "2017-11-27T20:10:34Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-6cd46c8668-8txnw",
+                "UID": "06624e93-d3af-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "5635",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:10:34Z",
+            "LastTimestamp": "2017-11-27T20:50:43Z",
+            "Count": 38,
+            "Type": "Warning"
+        },
+        {
+            "name": "tiller-deploy-6cd46c8668.14fb0c87a93bcc9b",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-6cd46c8668.14fb0c87a93bcc9b",
+            "uid": "b67a4a01-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "8698",
+            "creationTimestamp": "2017-11-27T20:51:16Z",
+            "InvolvedObject": {
+                "Kind": "ReplicaSet",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-6cd46c8668",
+                "UID": "0660ebed-d3af-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "8691",
+                "FieldPath": ""
+            },
+            "Reason": "SuccessfulDelete",
+            "Message": "Deleted pod: tiller-deploy-6cd46c8668-8txnw",
+            "Source": {
+                "Component": "replicaset-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T20:51:16Z",
+            "LastTimestamp": "2017-11-27T20:51:16Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-8485bc95cc-mrq6h.14fb0e1688309fe1",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-8485bc95cc-mrq6h.14fb0e1688309fe1",
+            "uid": "b396bd0f-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10973",
+            "creationTimestamp": "2017-11-27T21:19:49Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-8485bc95cc-mrq6h",
+                "UID": "b394a487-d3b8-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "10961",
+                "FieldPath": ""
+            },
+            "Reason": "Scheduled",
+            "Message": "Successfully assigned tiller-deploy-8485bc95cc-mrq6h to minion2",
+            "Source": {
+                "Component": "default-scheduler",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T21:19:49Z",
+            "LastTimestamp": "2017-11-27T21:19:49Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-8485bc95cc-mrq6h.14fb0e16f9b3fb63",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-8485bc95cc-mrq6h.14fb0e16f9b3fb63",
+            "uid": "b3c6578c-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10979",
+            "creationTimestamp": "2017-11-27T21:19:50Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-8485bc95cc-mrq6h",
+                "UID": "b394a487-d3b8-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "10963",
+                "FieldPath": ""
+            },
+            "Reason": "SuccessfulMountVolume",
+            "Message": "MountVolume.SetUp succeeded for volume \"tiller-token-lrks6\" ",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T21:19:51Z",
+            "LastTimestamp": "2017-11-27T21:19:51Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-8485bc95cc-mrq6h.14fb0e16fc00929f",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-8485bc95cc-mrq6h.14fb0e16fc00929f",
+            "uid": "b3d42ffa-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "11964",
+            "creationTimestamp": "2017-11-27T21:19:50Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-8485bc95cc-mrq6h",
+                "UID": "b394a487-d3b8-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "10963",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T21:19:51Z",
+            "LastTimestamp": "2017-11-27T21:33:00Z",
+            "Count": 16,
+            "Type": "Warning"
+        },
+        {
+            "name": "tiller-deploy-8485bc95cc-mrq6h.14fb0e170eeba4a9",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-8485bc95cc-mrq6h.14fb0e170eeba4a9",
+            "uid": "b4036ce3-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10984",
+            "creationTimestamp": "2017-11-27T21:19:50Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-8485bc95cc-mrq6h",
+                "UID": "b394a487-d3b8-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "10963",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "Pulled",
+            "Message": "Container image \"gcr.io/kubernetes-helm/tiller:v2.7.2\" already present on machine",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T21:19:52Z",
+            "LastTimestamp": "2017-11-27T21:19:52Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-8485bc95cc-mrq6h.14fb0e17196097f9",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-8485bc95cc-mrq6h.14fb0e17196097f9",
+            "uid": "b4177fa0-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10986",
+            "creationTimestamp": "2017-11-27T21:19:50Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-8485bc95cc-mrq6h",
+                "UID": "b394a487-d3b8-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "10963",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "Created",
+            "Message": "Created container",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T21:19:52Z",
+            "LastTimestamp": "2017-11-27T21:19:52Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-8485bc95cc-mrq6h.14fb0e17225e47a9",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-8485bc95cc-mrq6h.14fb0e17225e47a9",
+            "uid": "b42eb2f0-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10988",
+            "creationTimestamp": "2017-11-27T21:19:50Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-8485bc95cc-mrq6h",
+                "UID": "b394a487-d3b8-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "10963",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "Started",
+            "Message": "Started container",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T21:19:52Z",
+            "LastTimestamp": "2017-11-27T21:19:52Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-8485bc95cc.14fb0e1687d93b54",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-8485bc95cc.14fb0e1687d93b54",
+            "uid": "b395a578-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10969",
+            "creationTimestamp": "2017-11-27T21:19:49Z",
+            "InvolvedObject": {
+                "Kind": "ReplicaSet",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-8485bc95cc",
+                "UID": "b39323e2-d3b8-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "10957",
+                "FieldPath": ""
+            },
+            "Reason": "SuccessfulCreate",
+            "Message": "Created pod: tiller-deploy-8485bc95cc-mrq6h",
+            "Source": {
+                "Component": "replicaset-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T21:19:49Z",
+            "LastTimestamp": "2017-11-27T21:19:49Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-d65dd8459-vqvfq.14fb0c87aa35bcf1",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-d65dd8459-vqvfq.14fb0c87aa35bcf1",
+            "uid": "b67cd117-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "8704",
+            "creationTimestamp": "2017-11-27T20:51:16Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-d65dd8459-vqvfq",
+                "UID": "b67a180f-d3b4-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "8694",
+                "FieldPath": ""
+            },
+            "Reason": "Scheduled",
+            "Message": "Successfully assigned tiller-deploy-d65dd8459-vqvfq to minion2",
+            "Source": {
+                "Component": "default-scheduler",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T20:51:16Z",
+            "LastTimestamp": "2017-11-27T20:51:16Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-d65dd8459-vqvfq.14fb0c87fd3d05b4",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-d65dd8459-vqvfq.14fb0c87fd3d05b4",
+            "uid": "b69fb3b7-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "8708",
+            "creationTimestamp": "2017-11-27T20:51:16Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-d65dd8459-vqvfq",
+                "UID": "b67a180f-d3b4-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "8699",
+                "FieldPath": ""
+            },
+            "Reason": "SuccessfulMountVolume",
+            "Message": "MountVolume.SetUp succeeded for volume \"tiller-token-lrks6\" ",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T20:51:18Z",
+            "LastTimestamp": "2017-11-27T20:51:18Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-d65dd8459-vqvfq.14fb0c880569ae92",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-d65dd8459-vqvfq.14fb0c880569ae92",
+            "uid": "b6b4bb5b-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "9007",
+            "creationTimestamp": "2017-11-27T20:51:17Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-d65dd8459-vqvfq",
+                "UID": "b67a180f-d3b4-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "8699",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T20:51:18Z",
+            "LastTimestamp": "2017-11-27T20:55:06Z",
+            "Count": 8,
+            "Type": "Warning"
+        },
+        {
+            "name": "tiller-deploy-d65dd8459-vqvfq.14fb0c8819d11145",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-d65dd8459-vqvfq.14fb0c8819d11145",
+            "uid": "b6ef92e2-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "8712",
+            "creationTimestamp": "2017-11-27T20:51:17Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-d65dd8459-vqvfq",
+                "UID": "b67a180f-d3b4-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "8699",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "Pulled",
+            "Message": "Container image \"gcr.io/kubernetes-helm/tiller:v2.7.2\" already present on machine",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T20:51:18Z",
+            "LastTimestamp": "2017-11-27T20:51:18Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-d65dd8459-vqvfq.14fb0c8823e989e4",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-d65dd8459-vqvfq.14fb0c8823e989e4",
+            "uid": "b702a66d-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "8715",
+            "creationTimestamp": "2017-11-27T20:51:17Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-d65dd8459-vqvfq",
+                "UID": "b67a180f-d3b4-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "8699",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "Created",
+            "Message": "Created container",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T20:51:18Z",
+            "LastTimestamp": "2017-11-27T20:51:18Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-d65dd8459-vqvfq.14fb0c882bc8e183",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-d65dd8459-vqvfq.14fb0c882bc8e183",
+            "uid": "b717197c-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "8716",
+            "creationTimestamp": "2017-11-27T20:51:17Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-d65dd8459-vqvfq",
+                "UID": "b67a180f-d3b4-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "8699",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "Started",
+            "Message": "Started container",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T20:51:18Z",
+            "LastTimestamp": "2017-11-27T20:51:18Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-d65dd8459-vqvfq.14fb0cbf06fe887b",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-d65dd8459-vqvfq.14fb0cbf06fe887b",
+            "uid": "43748155-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9039",
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-d65dd8459-vqvfq",
+                "UID": "b67a180f-d3b4-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "8699",
+                "FieldPath": "spec.containers{tiller}"
+            },
+            "Reason": "Killing",
+            "Message": "Killing container with id docker://tiller:Need to kill Pod",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T20:55:14Z",
+            "LastTimestamp": "2017-11-27T20:55:14Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-d65dd8459.14fb0c87aa05e9af",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-d65dd8459.14fb0c87aa05e9af",
+            "uid": "b67c8ac6-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "8702",
+            "creationTimestamp": "2017-11-27T20:51:16Z",
+            "InvolvedObject": {
+                "Kind": "ReplicaSet",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-d65dd8459",
+                "UID": "b677a527-d3b4-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "8688",
+                "FieldPath": ""
+            },
+            "Reason": "SuccessfulCreate",
+            "Message": "Created pod: tiller-deploy-d65dd8459-vqvfq",
+            "Source": {
+                "Component": "replicaset-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T20:51:16Z",
+            "LastTimestamp": "2017-11-27T20:51:16Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy-d65dd8459.14fb0cbeb2443d2b",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy-d65dd8459.14fb0cbeb2443d2b",
+            "uid": "435e61bc-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9036",
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "InvolvedObject": {
+                "Kind": "ReplicaSet",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy-d65dd8459",
+                "UID": "b677a527-d3b4-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "9022",
+                "FieldPath": ""
+            },
+            "Reason": "SuccessfulDelete",
+            "Message": "Deleted pod: tiller-deploy-d65dd8459-vqvfq",
+            "Source": {
+                "Component": "replicaset-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T20:55:13Z",
+            "LastTimestamp": "2017-11-27T20:55:13Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy.14fb0c87a87327c9",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy.14fb0c87a87327c9",
+            "uid": "b678569f-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "8690",
+            "creationTimestamp": "2017-11-27T20:51:16Z",
+            "InvolvedObject": {
+                "Kind": "Deployment",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy",
+                "UID": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "8687",
+                "FieldPath": ""
+            },
+            "Reason": "ScalingReplicaSet",
+            "Message": "Scaled up replica set tiller-deploy-d65dd8459 to 1",
+            "Source": {
+                "Component": "deployment-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T20:51:16Z",
+            "LastTimestamp": "2017-11-27T20:51:16Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy.14fb0c87a8f97f0b",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy.14fb0c87a8f97f0b",
+            "uid": "b679c71a-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "8696",
+            "creationTimestamp": "2017-11-27T20:51:16Z",
+            "InvolvedObject": {
+                "Kind": "Deployment",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy",
+                "UID": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "8687",
+                "FieldPath": ""
+            },
+            "Reason": "ScalingReplicaSet",
+            "Message": "Scaled down replica set tiller-deploy-6cd46c8668 to 0",
+            "Source": {
+                "Component": "deployment-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T20:51:16Z",
+            "LastTimestamp": "2017-11-27T20:51:16Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy.14fb0cbeb0dac29e",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy.14fb0cbeb0dac29e",
+            "uid": "435ab5f4-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9021",
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "InvolvedObject": {
+                "Kind": "Deployment",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy",
+                "UID": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "9018",
+                "FieldPath": ""
+            },
+            "Reason": "ScalingReplicaSet",
+            "Message": "Scaled up replica set tiller-deploy-594bb7655b to 1",
+            "Source": {
+                "Component": "deployment-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T20:55:13Z",
+            "LastTimestamp": "2017-11-27T20:55:13Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy.14fb0cbeb15cac95",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy.14fb0cbeb15cac95",
+            "uid": "435bf504-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "9029",
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "InvolvedObject": {
+                "Kind": "Deployment",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy",
+                "UID": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "9018",
+                "FieldPath": ""
+            },
+            "Reason": "ScalingReplicaSet",
+            "Message": "Scaled down replica set tiller-deploy-d65dd8459 to 0",
+            "Source": {
+                "Component": "deployment-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T20:55:13Z",
+            "LastTimestamp": "2017-11-27T20:55:13Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy.14fb0e168722ebc1",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy.14fb0e168722ebc1",
+            "uid": "b393bb6d-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10959",
+            "creationTimestamp": "2017-11-27T21:19:49Z",
+            "InvolvedObject": {
+                "Kind": "Deployment",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy",
+                "UID": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "10956",
+                "FieldPath": ""
+            },
+            "Reason": "ScalingReplicaSet",
+            "Message": "Scaled up replica set tiller-deploy-8485bc95cc to 1",
+            "Source": {
+                "Component": "deployment-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T21:19:49Z",
+            "LastTimestamp": "2017-11-27T21:19:49Z",
+            "Count": 1,
+            "Type": "Normal"
+        },
+        {
+            "name": "tiller-deploy.14fb0e1687b4f9d1",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/events/tiller-deploy.14fb0e1687b4f9d1",
+            "uid": "b3954465-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10966",
+            "creationTimestamp": "2017-11-27T21:19:49Z",
+            "InvolvedObject": {
+                "Kind": "Deployment",
+                "Namespace": "kube-system",
+                "Name": "tiller-deploy",
+                "UID": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                "APIVersion": "extensions",
+                "ResourceVersion": "10956",
+                "FieldPath": ""
+            },
+            "Reason": "ScalingReplicaSet",
+            "Message": "Scaled down replica set tiller-deploy-594bb7655b to 0",
+            "Source": {
+                "Component": "deployment-controller",
+                "Host": ""
+            },
+            "FirstTimestamp": "2017-11-27T21:19:49Z",
+            "LastTimestamp": "2017-11-27T21:19:49Z",
+            "Count": 1,
+            "Type": "Normal"
+        }
+    ]
+}
+{
+    "selfLink": "/api/v1/namespaces/kube-system/replicationcontrollers",
+    "resourceVersion": "11976",
+    "Items": []
+}
+{
+    "selfLink": "/api/v1/namespaces/kube-system/services",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "tiller-deploy",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/services/tiller-deploy",
+            "uid": "b4c1c6f7-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "5435",
+            "creationTimestamp": "2017-11-27T20:08:16Z",
+            "labels": {
+                "app": "helm",
+                "name": "tiller"
+            },
+            "Spec": {
+                "Type": "ClusterIP",
+                "Ports": [
+                    {
+                        "Name": "tiller",
+                        "Protocol": "TCP",
+                        "Port": 44134,
+                        "TargetPort": "tiller",
+                        "NodePort": 0
+                    }
+                ],
+                "Selector": {
+                    "app": "helm",
+                    "name": "tiller"
+                },
+                "ClusterIP": "10.254.136.197",
+                "ExternalName": "",
+                "ExternalIPs": null,
+                "LoadBalancerIP": "",
+                "SessionAffinity": "None",
+                "SessionAffinityConfig": null,
+                "LoadBalancerSourceRanges": null,
+                "ExternalTrafficPolicy": "",
+                "HealthCheckNodePort": 0,
+                "PublishNotReadyAddresses": false
+            },
+            "Status": {
+                "LoadBalancer": {
+                    "Ingress": null
+                }
+            }
+        }
+    ]
+}
+{
+    "selfLink": "/apis/extensions/v1beta1/namespaces/kube-system/daemonsets",
+    "resourceVersion": "11976",
+    "Items": []
+}
+{
+    "selfLink": "/apis/extensions/v1beta1/namespaces/kube-system/deployments",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "tiller-deploy",
+            "namespace": "kube-system",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/kube-system/deployments/tiller-deploy",
+            "uid": "b4baa824-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "10999",
+            "generation": 6,
+            "creationTimestamp": "2017-11-27T20:08:16Z",
+            "labels": {
+                "app": "helm",
+                "name": "tiller"
+            },
+            "annotations": {
+                "deployment.kubernetes.io/revision": "5",
+                "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"extensions/v1beta1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{\"deployment.kubernetes.io/revision\":\"4\",\"kubernetes.io/change-cause\":\"kubectl apply --filename=tiller-deploy.yaml --record=true\"},\"creationTimestamp\":\"2017-11-27T20:08:16Z\",\"generation\":5,\"labels\":{\"app\":\"helm\",\"name\":\"tiller\"},\"name\":\"tiller-deploy\",\"namespace\":\"kube-system\",\"resourceVersion\":\"9038\",\"selfLink\":\"/apis/extensions/v1beta1/namespaces/kube-system/deployments/tiller-deploy\",\"uid\":\"b4baa824-d3ae-11e7-862b-5254007a695a\"},\"spec\":{\"replicas\":1,\"selector\":{\"matchLabels\":{\"app\":\"helm\",\"name\":\"tiller\"}},\"strategy\":{\"rollingUpdate\":{\"maxSurge\":1,\"maxUnavailable\":1},\"type\":\"RollingUpdate\"},\"template\":{\"metadata\":{\"creationTimestamp\":null,\"labels\":{\"app\":\"helm\",\"name\":\"tiller\"}},\"spec\":{\"containers\":[{\"env\":[{\"name\":\"KUBERNETES_MASTER\",\"value\":\"http://master:8080\"},{\"name\":\"TILLER_NAMESPACE\",\"value\":\"kube-system\"},{\"name\":\"TILLER_HISTORY_MAX\",\"value\":\"0\"}],\"image\":\"gcr.io/kubernetes-helm/tiller:v2.7.2\",\"imagePullPolicy\":\"IfNotPresent\",\"livenessProbe\":{\"failureThreshold\":3,\"httpGet\":{\"path\":\"/liveness\",\"port\":44135,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":1,\"periodSeconds\":10,\"successThreshold\":1,\"timeoutSeconds\":1},\"name\":\"tiller\",\"ports\":[{\"containerPort\":44134,\"name\":\"tiller\",\"protocol\":\"TCP\"}],\"readinessProbe\":{\"failureThreshold\":3,\"httpGet\":{\"path\":\"/readiness\",\"port\":44135,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":1,\"periodSeconds\":10,\"successThreshold\":1,\"timeoutSeconds\":1},\"resources\":{},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\"}],\"dnsPolicy\":\"ClusterFirst\",\"restartPolicy\":\"Always\",\"schedulerName\":\"default-scheduler\",\"securityContext\":{},\"serviceAccount\":\"tiller\",\"serviceAccountName\":\"tiller\",\"terminationGracePeriodSeconds\":30}}},\"status\":{\"conditions\":[{\"lastTransitionTime\":\"2017-11-27T20:08:16Z\",\"lastUpdateTime\":\"2017-11-27T20:08:16Z\",\"message\":\"Deployment has minimum availability.\",\"reason\":\"MinimumReplicasAvailable\",\"status\":\"True\",\"type\":\"Available\"}],\"observedGeneration\":5,\"replicas\":1,\"unavailableReplicas\":1,\"updatedReplicas\":1}}\n",
+                "kubernetes.io/change-cause": "kubectl apply --filename=tiller-deploy.yaml --record=true"
+            },
+            "Spec": {
+                "Replicas": 1,
+                "Selector": {
+                    "matchLabels": {
+                        "app": "helm",
+                        "name": "tiller"
+                    }
+                },
+                "Template": {
+                    "creationTimestamp": null,
+                    "labels": {
+                        "app": "helm",
+                        "name": "tiller"
+                    },
+                    "Spec": {
+                        "Volumes": null,
+                        "InitContainers": null,
+                        "Containers": [
+                            {
+                                "Name": "tiller",
+                                "Image": "gcr.io/kubernetes-helm/tiller:v2.7.2",
+                                "Command": null,
+                                "Args": null,
+                                "WorkingDir": "",
+                                "Ports": [
+                                    {
+                                        "Name": "tiller",
+                                        "HostPort": 0,
+                                        "ContainerPort": 44134,
+                                        "Protocol": "TCP",
+                                        "HostIP": ""
+                                    }
+                                ],
+                                "EnvFrom": null,
+                                "Env": [
+                                    {
+                                        "Name": "KUBERNETES_MASTER",
+                                        "Value": "http://master:8080",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_NAMESPACE",
+                                        "Value": "kube-system",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_HISTORY_MAX",
+                                        "Value": "0",
+                                        "ValueFrom": null
+                                    }
+                                ],
+                                "Resources": {
+                                    "Limits": null,
+                                    "Requests": null
+                                },
+                                "VolumeMounts": null,
+                                "LivenessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/liveness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "ReadinessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/readiness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "Lifecycle": null,
+                                "TerminationMessagePath": "/dev/termination-log",
+                                "TerminationMessagePolicy": "File",
+                                "ImagePullPolicy": "IfNotPresent",
+                                "SecurityContext": null,
+                                "Stdin": false,
+                                "StdinOnce": false,
+                                "TTY": false
+                            }
+                        ],
+                        "RestartPolicy": "Always",
+                        "TerminationGracePeriodSeconds": 30,
+                        "ActiveDeadlineSeconds": null,
+                        "DNSPolicy": "ClusterFirst",
+                        "NodeSelector": null,
+                        "ServiceAccountName": "tiller",
+                        "AutomountServiceAccountToken": null,
+                        "NodeName": "",
+                        "SecurityContext": {
+                            "HostNetwork": false,
+                            "HostPID": false,
+                            "HostIPC": false,
+                            "SELinuxOptions": null,
+                            "RunAsUser": null,
+                            "RunAsNonRoot": null,
+                            "SupplementalGroups": null,
+                            "FSGroup": null
+                        },
+                        "ImagePullSecrets": null,
+                        "Hostname": "",
+                        "Subdomain": "",
+                        "Affinity": null,
+                        "SchedulerName": "default-scheduler",
+                        "Tolerations": null,
+                        "HostAliases": null,
+                        "PriorityClassName": "",
+                        "Priority": null
+                    }
+                },
+                "Strategy": {
+                    "Type": "RollingUpdate",
+                    "RollingUpdate": {
+                        "MaxUnavailable": 1,
+                        "MaxSurge": 1
+                    }
+                },
+                "MinReadySeconds": 0,
+                "RevisionHistoryLimit": null,
+                "Paused": false,
+                "RollbackTo": null,
+                "ProgressDeadlineSeconds": null
+            },
+            "Status": {
+                "ObservedGeneration": 6,
+                "Replicas": 1,
+                "UpdatedReplicas": 1,
+                "ReadyReplicas": 1,
+                "AvailableReplicas": 1,
+                "UnavailableReplicas": 0,
+                "Conditions": [
+                    {
+                        "Type": "Available",
+                        "Status": "True",
+                        "LastUpdateTime": "2017-11-27T20:08:16Z",
+                        "LastTransitionTime": "2017-11-27T20:08:16Z",
+                        "Reason": "MinimumReplicasAvailable",
+                        "Message": "Deployment has minimum availability."
+                    }
+                ],
+                "CollisionCount": null
+            }
+        }
+    ]
+}
+{
+    "selfLink": "/apis/extensions/v1beta1/namespaces/kube-system/replicasets",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "tiller-deploy-546cf9696c",
+            "namespace": "kube-system",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/kube-system/replicasets/tiller-deploy-546cf9696c",
+            "uid": "b4bb23e0-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "5646",
+            "generation": 2,
+            "creationTimestamp": "2017-11-27T20:08:16Z",
+            "labels": {
+                "app": "helm",
+                "name": "tiller",
+                "pod-template-hash": "1027952527"
+            },
+            "annotations": {
+                "deployment.kubernetes.io/desired-replicas": "1",
+                "deployment.kubernetes.io/max-replicas": "2",
+                "deployment.kubernetes.io/revision": "1"
+            },
+            "ownerReferences": [
+                {
+                    "apiVersion": "extensions/v1beta1",
+                    "kind": "Deployment",
+                    "name": "tiller-deploy",
+                    "uid": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                    "controller": true,
+                    "blockOwnerDeletion": true
+                }
+            ],
+            "Spec": {
+                "Replicas": 0,
+                "MinReadySeconds": 0,
+                "Selector": {
+                    "matchLabels": {
+                        "app": "helm",
+                        "name": "tiller",
+                        "pod-template-hash": "1027952527"
+                    }
+                },
+                "Template": {
+                    "creationTimestamp": null,
+                    "labels": {
+                        "app": "helm",
+                        "name": "tiller",
+                        "pod-template-hash": "1027952527"
+                    },
+                    "Spec": {
+                        "Volumes": null,
+                        "InitContainers": null,
+                        "Containers": [
+                            {
+                                "Name": "tiller",
+                                "Image": "gcr.io/kubernetes-helm/tiller:v2.7.2",
+                                "Command": null,
+                                "Args": null,
+                                "WorkingDir": "",
+                                "Ports": [
+                                    {
+                                        "Name": "tiller",
+                                        "HostPort": 0,
+                                        "ContainerPort": 44134,
+                                        "Protocol": "TCP",
+                                        "HostIP": ""
+                                    }
+                                ],
+                                "EnvFrom": null,
+                                "Env": [
+                                    {
+                                        "Name": "TILLER_NAMESPACE",
+                                        "Value": "kube-system",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_HISTORY_MAX",
+                                        "Value": "0",
+                                        "ValueFrom": null
+                                    }
+                                ],
+                                "Resources": {
+                                    "Limits": null,
+                                    "Requests": null
+                                },
+                                "VolumeMounts": null,
+                                "LivenessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/liveness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "ReadinessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/readiness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "Lifecycle": null,
+                                "TerminationMessagePath": "/dev/termination-log",
+                                "TerminationMessagePolicy": "File",
+                                "ImagePullPolicy": "IfNotPresent",
+                                "SecurityContext": null,
+                                "Stdin": false,
+                                "StdinOnce": false,
+                                "TTY": false
+                            }
+                        ],
+                        "RestartPolicy": "Always",
+                        "TerminationGracePeriodSeconds": 30,
+                        "ActiveDeadlineSeconds": null,
+                        "DNSPolicy": "ClusterFirst",
+                        "NodeSelector": null,
+                        "ServiceAccountName": "tiller",
+                        "AutomountServiceAccountToken": null,
+                        "NodeName": "",
+                        "SecurityContext": {
+                            "HostNetwork": false,
+                            "HostPID": false,
+                            "HostIPC": false,
+                            "SELinuxOptions": null,
+                            "RunAsUser": null,
+                            "RunAsNonRoot": null,
+                            "SupplementalGroups": null,
+                            "FSGroup": null
+                        },
+                        "ImagePullSecrets": null,
+                        "Hostname": "",
+                        "Subdomain": "",
+                        "Affinity": null,
+                        "SchedulerName": "default-scheduler",
+                        "Tolerations": null,
+                        "HostAliases": null,
+                        "PriorityClassName": "",
+                        "Priority": null
+                    }
+                }
+            },
+            "Status": {
+                "Replicas": 0,
+                "FullyLabeledReplicas": 0,
+                "ReadyReplicas": 0,
+                "AvailableReplicas": 0,
+                "ObservedGeneration": 2,
+                "Conditions": null
+            }
+        },
+        {
+            "name": "tiller-deploy-594bb7655b",
+            "namespace": "kube-system",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/kube-system/replicasets/tiller-deploy-594bb7655b",
+            "uid": "435a182c-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "10977",
+            "generation": 2,
+            "creationTimestamp": "2017-11-27T20:55:13Z",
+            "labels": {
+                "app": "helm",
+                "name": "tiller",
+                "pod-template-hash": "1506632116"
+            },
+            "annotations": {
+                "deployment.kubernetes.io/desired-replicas": "1",
+                "deployment.kubernetes.io/max-replicas": "2",
+                "deployment.kubernetes.io/revision": "4",
+                "kubernetes.io/change-cause": "kubectl apply --filename=tiller-deploy.yaml --record=true"
+            },
+            "ownerReferences": [
+                {
+                    "apiVersion": "extensions/v1beta1",
+                    "kind": "Deployment",
+                    "name": "tiller-deploy",
+                    "uid": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                    "controller": true,
+                    "blockOwnerDeletion": true
+                }
+            ],
+            "Spec": {
+                "Replicas": 0,
+                "MinReadySeconds": 0,
+                "Selector": {
+                    "matchLabels": {
+                        "app": "helm",
+                        "name": "tiller",
+                        "pod-template-hash": "1506632116"
+                    }
+                },
+                "Template": {
+                    "creationTimestamp": null,
+                    "labels": {
+                        "app": "helm",
+                        "name": "tiller",
+                        "pod-template-hash": "1506632116"
+                    },
+                    "Spec": {
+                        "Volumes": null,
+                        "InitContainers": null,
+                        "Containers": [
+                            {
+                                "Name": "tiller",
+                                "Image": "gcr.io/kubernetes-helm/tiller:v2.7.2",
+                                "Command": null,
+                                "Args": null,
+                                "WorkingDir": "",
+                                "Ports": [
+                                    {
+                                        "Name": "tiller",
+                                        "HostPort": 0,
+                                        "ContainerPort": 44134,
+                                        "Protocol": "TCP",
+                                        "HostIP": ""
+                                    }
+                                ],
+                                "EnvFrom": null,
+                                "Env": [
+                                    {
+                                        "Name": "KUBERNETES_MASTER",
+                                        "Value": "https://172.28.128.6:6443",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_NAMESPACE",
+                                        "Value": "kube-system",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_HISTORY_MAX",
+                                        "Value": "0",
+                                        "ValueFrom": null
+                                    }
+                                ],
+                                "Resources": {
+                                    "Limits": null,
+                                    "Requests": null
+                                },
+                                "VolumeMounts": null,
+                                "LivenessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/liveness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "ReadinessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/readiness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "Lifecycle": null,
+                                "TerminationMessagePath": "/dev/termination-log",
+                                "TerminationMessagePolicy": "File",
+                                "ImagePullPolicy": "IfNotPresent",
+                                "SecurityContext": null,
+                                "Stdin": false,
+                                "StdinOnce": false,
+                                "TTY": false
+                            }
+                        ],
+                        "RestartPolicy": "Always",
+                        "TerminationGracePeriodSeconds": 30,
+                        "ActiveDeadlineSeconds": null,
+                        "DNSPolicy": "ClusterFirst",
+                        "NodeSelector": null,
+                        "ServiceAccountName": "tiller",
+                        "AutomountServiceAccountToken": null,
+                        "NodeName": "",
+                        "SecurityContext": {
+                            "HostNetwork": false,
+                            "HostPID": false,
+                            "HostIPC": false,
+                            "SELinuxOptions": null,
+                            "RunAsUser": null,
+                            "RunAsNonRoot": null,
+                            "SupplementalGroups": null,
+                            "FSGroup": null
+                        },
+                        "ImagePullSecrets": null,
+                        "Hostname": "",
+                        "Subdomain": "",
+                        "Affinity": null,
+                        "SchedulerName": "default-scheduler",
+                        "Tolerations": null,
+                        "HostAliases": null,
+                        "PriorityClassName": "",
+                        "Priority": null
+                    }
+                }
+            },
+            "Status": {
+                "Replicas": 0,
+                "FullyLabeledReplicas": 0,
+                "ReadyReplicas": 0,
+                "AvailableReplicas": 0,
+                "ObservedGeneration": 2,
+                "Conditions": null
+            }
+        },
+        {
+            "name": "tiller-deploy-6cd46c8668",
+            "namespace": "kube-system",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/kube-system/replicasets/tiller-deploy-6cd46c8668",
+            "uid": "0660ebed-d3af-11e7-862b-5254007a695a",
+            "resourceVersion": "8700",
+            "generation": 2,
+            "creationTimestamp": "2017-11-27T20:10:33Z",
+            "labels": {
+                "app": "helm",
+                "name": "tiller",
+                "pod-template-hash": "2780274224"
+            },
+            "annotations": {
+                "deployment.kubernetes.io/desired-replicas": "1",
+                "deployment.kubernetes.io/max-replicas": "2",
+                "deployment.kubernetes.io/revision": "2",
+                "deployment.kubernetes.io/revision-history": "2",
+                "kubernetes.io/change-cause": "kubectl patch deploy tiller-deploy --namespace=kube-system --patch={\"spec\":{\"template\":{\"spec\":{\"serviceAccount\":\"tiller\"}}}}"
+            },
+            "ownerReferences": [
+                {
+                    "apiVersion": "extensions/v1beta1",
+                    "kind": "Deployment",
+                    "name": "tiller-deploy",
+                    "uid": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                    "controller": true,
+                    "blockOwnerDeletion": true
+                }
+            ],
+            "Spec": {
+                "Replicas": 0,
+                "MinReadySeconds": 0,
+                "Selector": {
+                    "matchLabels": {
+                        "app": "helm",
+                        "name": "tiller",
+                        "pod-template-hash": "2780274224"
+                    }
+                },
+                "Template": {
+                    "creationTimestamp": null,
+                    "labels": {
+                        "app": "helm",
+                        "name": "tiller",
+                        "pod-template-hash": "2780274224"
+                    },
+                    "Spec": {
+                        "Volumes": null,
+                        "InitContainers": null,
+                        "Containers": [
+                            {
+                                "Name": "tiller",
+                                "Image": "gcr.io/kubernetes-helm/tiller:v2.7.2",
+                                "Command": null,
+                                "Args": null,
+                                "WorkingDir": "",
+                                "Ports": [
+                                    {
+                                        "Name": "tiller",
+                                        "HostPort": 0,
+                                        "ContainerPort": 44134,
+                                        "Protocol": "TCP",
+                                        "HostIP": ""
+                                    }
+                                ],
+                                "EnvFrom": null,
+                                "Env": [
+                                    {
+                                        "Name": "KUBERNETES_MASTER",
+                                        "Value": "http://172.28.128.6:8080",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_NAMESPACE",
+                                        "Value": "kube-system",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_HISTORY_MAX",
+                                        "Value": "0",
+                                        "ValueFrom": null
+                                    }
+                                ],
+                                "Resources": {
+                                    "Limits": null,
+                                    "Requests": null
+                                },
+                                "VolumeMounts": null,
+                                "LivenessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/liveness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "ReadinessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/readiness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "Lifecycle": null,
+                                "TerminationMessagePath": "/dev/termination-log",
+                                "TerminationMessagePolicy": "File",
+                                "ImagePullPolicy": "IfNotPresent",
+                                "SecurityContext": null,
+                                "Stdin": false,
+                                "StdinOnce": false,
+                                "TTY": false
+                            }
+                        ],
+                        "RestartPolicy": "Always",
+                        "TerminationGracePeriodSeconds": 30,
+                        "ActiveDeadlineSeconds": null,
+                        "DNSPolicy": "ClusterFirst",
+                        "NodeSelector": null,
+                        "ServiceAccountName": "tiller",
+                        "AutomountServiceAccountToken": null,
+                        "NodeName": "",
+                        "SecurityContext": {
+                            "HostNetwork": false,
+                            "HostPID": false,
+                            "HostIPC": false,
+                            "SELinuxOptions": null,
+                            "RunAsUser": null,
+                            "RunAsNonRoot": null,
+                            "SupplementalGroups": null,
+                            "FSGroup": null
+                        },
+                        "ImagePullSecrets": null,
+                        "Hostname": "",
+                        "Subdomain": "",
+                        "Affinity": null,
+                        "SchedulerName": "default-scheduler",
+                        "Tolerations": null,
+                        "HostAliases": null,
+                        "PriorityClassName": "",
+                        "Priority": null
+                    }
+                }
+            },
+            "Status": {
+                "Replicas": 0,
+                "FullyLabeledReplicas": 0,
+                "ReadyReplicas": 0,
+                "AvailableReplicas": 0,
+                "ObservedGeneration": 2,
+                "Conditions": null
+            }
+        },
+        {
+            "name": "tiller-deploy-8485bc95cc",
+            "namespace": "kube-system",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/kube-system/replicasets/tiller-deploy-8485bc95cc",
+            "uid": "b39323e2-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10997",
+            "generation": 1,
+            "creationTimestamp": "2017-11-27T21:19:49Z",
+            "labels": {
+                "app": "helm",
+                "name": "tiller",
+                "pod-template-hash": "4041675177"
+            },
+            "annotations": {
+                "deployment.kubernetes.io/desired-replicas": "1",
+                "deployment.kubernetes.io/max-replicas": "2",
+                "deployment.kubernetes.io/revision": "5",
+                "kubernetes.io/change-cause": "kubectl apply --filename=tiller-deploy.yaml --record=true"
+            },
+            "ownerReferences": [
+                {
+                    "apiVersion": "extensions/v1beta1",
+                    "kind": "Deployment",
+                    "name": "tiller-deploy",
+                    "uid": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                    "controller": true,
+                    "blockOwnerDeletion": true
+                }
+            ],
+            "Spec": {
+                "Replicas": 1,
+                "MinReadySeconds": 0,
+                "Selector": {
+                    "matchLabels": {
+                        "app": "helm",
+                        "name": "tiller",
+                        "pod-template-hash": "4041675177"
+                    }
+                },
+                "Template": {
+                    "creationTimestamp": null,
+                    "labels": {
+                        "app": "helm",
+                        "name": "tiller",
+                        "pod-template-hash": "4041675177"
+                    },
+                    "Spec": {
+                        "Volumes": null,
+                        "InitContainers": null,
+                        "Containers": [
+                            {
+                                "Name": "tiller",
+                                "Image": "gcr.io/kubernetes-helm/tiller:v2.7.2",
+                                "Command": null,
+                                "Args": null,
+                                "WorkingDir": "",
+                                "Ports": [
+                                    {
+                                        "Name": "tiller",
+                                        "HostPort": 0,
+                                        "ContainerPort": 44134,
+                                        "Protocol": "TCP",
+                                        "HostIP": ""
+                                    }
+                                ],
+                                "EnvFrom": null,
+                                "Env": [
+                                    {
+                                        "Name": "KUBERNETES_MASTER",
+                                        "Value": "http://master:8080",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_NAMESPACE",
+                                        "Value": "kube-system",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_HISTORY_MAX",
+                                        "Value": "0",
+                                        "ValueFrom": null
+                                    }
+                                ],
+                                "Resources": {
+                                    "Limits": null,
+                                    "Requests": null
+                                },
+                                "VolumeMounts": null,
+                                "LivenessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/liveness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "ReadinessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/readiness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "Lifecycle": null,
+                                "TerminationMessagePath": "/dev/termination-log",
+                                "TerminationMessagePolicy": "File",
+                                "ImagePullPolicy": "IfNotPresent",
+                                "SecurityContext": null,
+                                "Stdin": false,
+                                "StdinOnce": false,
+                                "TTY": false
+                            }
+                        ],
+                        "RestartPolicy": "Always",
+                        "TerminationGracePeriodSeconds": 30,
+                        "ActiveDeadlineSeconds": null,
+                        "DNSPolicy": "ClusterFirst",
+                        "NodeSelector": null,
+                        "ServiceAccountName": "tiller",
+                        "AutomountServiceAccountToken": null,
+                        "NodeName": "",
+                        "SecurityContext": {
+                            "HostNetwork": false,
+                            "HostPID": false,
+                            "HostIPC": false,
+                            "SELinuxOptions": null,
+                            "RunAsUser": null,
+                            "RunAsNonRoot": null,
+                            "SupplementalGroups": null,
+                            "FSGroup": null
+                        },
+                        "ImagePullSecrets": null,
+                        "Hostname": "",
+                        "Subdomain": "",
+                        "Affinity": null,
+                        "SchedulerName": "default-scheduler",
+                        "Tolerations": null,
+                        "HostAliases": null,
+                        "PriorityClassName": "",
+                        "Priority": null
+                    }
+                }
+            },
+            "Status": {
+                "Replicas": 1,
+                "FullyLabeledReplicas": 1,
+                "ReadyReplicas": 1,
+                "AvailableReplicas": 1,
+                "ObservedGeneration": 1,
+                "Conditions": null
+            }
+        },
+        {
+            "name": "tiller-deploy-d65dd8459",
+            "namespace": "kube-system",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/kube-system/replicasets/tiller-deploy-d65dd8459",
+            "uid": "b677a527-d3b4-11e7-862b-5254007a695a",
+            "resourceVersion": "9037",
+            "generation": 2,
+            "creationTimestamp": "2017-11-27T20:51:16Z",
+            "labels": {
+                "app": "helm",
+                "name": "tiller",
+                "pod-template-hash": "821884015"
+            },
+            "annotations": {
+                "deployment.kubernetes.io/desired-replicas": "1",
+                "deployment.kubernetes.io/max-replicas": "2",
+                "deployment.kubernetes.io/revision": "3",
+                "kubernetes.io/change-cause": "kubectl apply --filename=tiller-deploy.yaml --record=true"
+            },
+            "ownerReferences": [
+                {
+                    "apiVersion": "extensions/v1beta1",
+                    "kind": "Deployment",
+                    "name": "tiller-deploy",
+                    "uid": "b4baa824-d3ae-11e7-862b-5254007a695a",
+                    "controller": true,
+                    "blockOwnerDeletion": true
+                }
+            ],
+            "Spec": {
+                "Replicas": 0,
+                "MinReadySeconds": 0,
+                "Selector": {
+                    "matchLabels": {
+                        "app": "helm",
+                        "name": "tiller",
+                        "pod-template-hash": "821884015"
+                    }
+                },
+                "Template": {
+                    "creationTimestamp": null,
+                    "labels": {
+                        "app": "helm",
+                        "name": "tiller",
+                        "pod-template-hash": "821884015"
+                    },
+                    "Spec": {
+                        "Volumes": null,
+                        "InitContainers": null,
+                        "Containers": [
+                            {
+                                "Name": "tiller",
+                                "Image": "gcr.io/kubernetes-helm/tiller:v2.7.2",
+                                "Command": null,
+                                "Args": null,
+                                "WorkingDir": "",
+                                "Ports": [
+                                    {
+                                        "Name": "tiller",
+                                        "HostPort": 0,
+                                        "ContainerPort": 44134,
+                                        "Protocol": "TCP",
+                                        "HostIP": ""
+                                    }
+                                ],
+                                "EnvFrom": null,
+                                "Env": [
+                                    {
+                                        "Name": "KUBERNETES_MASTER",
+                                        "Value": "http://172.28.128.6:6443",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_NAMESPACE",
+                                        "Value": "kube-system",
+                                        "ValueFrom": null
+                                    },
+                                    {
+                                        "Name": "TILLER_HISTORY_MAX",
+                                        "Value": "0",
+                                        "ValueFrom": null
+                                    }
+                                ],
+                                "Resources": {
+                                    "Limits": null,
+                                    "Requests": null
+                                },
+                                "VolumeMounts": null,
+                                "LivenessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/liveness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "ReadinessProbe": {
+                                    "Exec": null,
+                                    "HTTPGet": {
+                                        "Path": "/readiness",
+                                        "Port": 44135,
+                                        "Host": "",
+                                        "Scheme": "HTTP",
+                                        "HTTPHeaders": null
+                                    },
+                                    "TCPSocket": null,
+                                    "InitialDelaySeconds": 1,
+                                    "TimeoutSeconds": 1,
+                                    "PeriodSeconds": 10,
+                                    "SuccessThreshold": 1,
+                                    "FailureThreshold": 3
+                                },
+                                "Lifecycle": null,
+                                "TerminationMessagePath": "/dev/termination-log",
+                                "TerminationMessagePolicy": "File",
+                                "ImagePullPolicy": "IfNotPresent",
+                                "SecurityContext": null,
+                                "Stdin": false,
+                                "StdinOnce": false,
+                                "TTY": false
+                            }
+                        ],
+                        "RestartPolicy": "Always",
+                        "TerminationGracePeriodSeconds": 30,
+                        "ActiveDeadlineSeconds": null,
+                        "DNSPolicy": "ClusterFirst",
+                        "NodeSelector": null,
+                        "ServiceAccountName": "tiller",
+                        "AutomountServiceAccountToken": null,
+                        "NodeName": "",
+                        "SecurityContext": {
+                            "HostNetwork": false,
+                            "HostPID": false,
+                            "HostIPC": false,
+                            "SELinuxOptions": null,
+                            "RunAsUser": null,
+                            "RunAsNonRoot": null,
+                            "SupplementalGroups": null,
+                            "FSGroup": null
+                        },
+                        "ImagePullSecrets": null,
+                        "Hostname": "",
+                        "Subdomain": "",
+                        "Affinity": null,
+                        "SchedulerName": "default-scheduler",
+                        "Tolerations": null,
+                        "HostAliases": null,
+                        "PriorityClassName": "",
+                        "Priority": null
+                    }
+                }
+            },
+            "Status": {
+                "Replicas": 0,
+                "FullyLabeledReplicas": 0,
+                "ReadyReplicas": 0,
+                "AvailableReplicas": 0,
+                "ObservedGeneration": 2,
+                "Conditions": null
+            }
+        }
+    ]
+}
+{
+    "selfLink": "/api/v1/namespaces/kube-system/pods",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "tiller-deploy-8485bc95cc-mrq6h",
+            "generateName": "tiller-deploy-8485bc95cc-",
+            "namespace": "kube-system",
+            "selfLink": "/api/v1/namespaces/kube-system/pods/tiller-deploy-8485bc95cc-mrq6h",
+            "uid": "b394a487-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10996",
+            "creationTimestamp": "2017-11-27T21:19:49Z",
+            "labels": {
+                "app": "helm",
+                "name": "tiller",
+                "pod-template-hash": "4041675177"
+            },
+            "annotations": {
+                "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"kube-system\",\"name\":\"tiller-deploy-8485bc95cc\",\"uid\":\"b39323e2-d3b8-11e7-862b-5254007a695a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"10957\"}}\n"
+            },
+            "ownerReferences": [
+                {
+                    "apiVersion": "extensions/v1beta1",
+                    "kind": "ReplicaSet",
+                    "name": "tiller-deploy-8485bc95cc",
+                    "uid": "b39323e2-d3b8-11e7-862b-5254007a695a",
+                    "controller": true,
+                    "blockOwnerDeletion": true
+                }
+            ],
+            "Spec": {
+                "Volumes": [
+                    {
+                        "Name": "tiller-token-lrks6",
+                        "HostPath": null,
+                        "EmptyDir": null,
+                        "GCEPersistentDisk": null,
+                        "AWSElasticBlockStore": null,
+                        "GitRepo": null,
+                        "Secret": {
+                            "SecretName": "tiller-token-lrks6",
+                            "Items": null,
+                            "DefaultMode": 420,
+                            "Optional": null
+                        },
+                        "NFS": null,
+                        "ISCSI": null,
+                        "Glusterfs": null,
+                        "PersistentVolumeClaim": null,
+                        "RBD": null,
+                        "Quobyte": null,
+                        "FlexVolume": null,
+                        "Cinder": null,
+                        "CephFS": null,
+                        "Flocker": null,
+                        "DownwardAPI": null,
+                        "FC": null,
+                        "AzureFile": null,
+                        "ConfigMap": null,
+                        "VsphereVolume": null,
+                        "AzureDisk": null,
+                        "PhotonPersistentDisk": null,
+                        "Projected": null,
+                        "PortworxVolume": null,
+                        "ScaleIO": null,
+                        "StorageOS": null
+                    }
+                ],
+                "InitContainers": null,
+                "Containers": [
+                    {
+                        "Name": "tiller",
+                        "Image": "gcr.io/kubernetes-helm/tiller:v2.7.2",
+                        "Command": null,
+                        "Args": null,
+                        "WorkingDir": "",
+                        "Ports": [
+                            {
+                                "Name": "tiller",
+                                "HostPort": 0,
+                                "ContainerPort": 44134,
+                                "Protocol": "TCP",
+                                "HostIP": ""
+                            }
+                        ],
+                        "EnvFrom": null,
+                        "Env": [
+                            {
+                                "Name": "KUBERNETES_MASTER",
+                                "Value": "http://master:8080",
+                                "ValueFrom": null
+                            },
+                            {
+                                "Name": "TILLER_NAMESPACE",
+                                "Value": "kube-system",
+                                "ValueFrom": null
+                            },
+                            {
+                                "Name": "TILLER_HISTORY_MAX",
+                                "Value": "0",
+                                "ValueFrom": null
+                            }
+                        ],
+                        "Resources": {
+                            "Limits": null,
+                            "Requests": null
+                        },
+                        "VolumeMounts": [
+                            {
+                                "Name": "tiller-token-lrks6",
+                                "ReadOnly": true,
+                                "MountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "SubPath": "",
+                                "MountPropagation": null
+                            }
+                        ],
+                        "LivenessProbe": {
+                            "Exec": null,
+                            "HTTPGet": {
+                                "Path": "/liveness",
+                                "Port": 44135,
+                                "Host": "",
+                                "Scheme": "HTTP",
+                                "HTTPHeaders": null
+                            },
+                            "TCPSocket": null,
+                            "InitialDelaySeconds": 1,
+                            "TimeoutSeconds": 1,
+                            "PeriodSeconds": 10,
+                            "SuccessThreshold": 1,
+                            "FailureThreshold": 3
+                        },
+                        "ReadinessProbe": {
+                            "Exec": null,
+                            "HTTPGet": {
+                                "Path": "/readiness",
+                                "Port": 44135,
+                                "Host": "",
+                                "Scheme": "HTTP",
+                                "HTTPHeaders": null
+                            },
+                            "TCPSocket": null,
+                            "InitialDelaySeconds": 1,
+                            "TimeoutSeconds": 1,
+                            "PeriodSeconds": 10,
+                            "SuccessThreshold": 1,
+                            "FailureThreshold": 3
+                        },
+                        "Lifecycle": null,
+                        "TerminationMessagePath": "/dev/termination-log",
+                        "TerminationMessagePolicy": "File",
+                        "ImagePullPolicy": "IfNotPresent",
+                        "SecurityContext": null,
+                        "Stdin": false,
+                        "StdinOnce": false,
+                        "TTY": false
+                    }
+                ],
+                "RestartPolicy": "Always",
+                "TerminationGracePeriodSeconds": 30,
+                "ActiveDeadlineSeconds": null,
+                "DNSPolicy": "ClusterFirst",
+                "NodeSelector": null,
+                "ServiceAccountName": "tiller",
+                "AutomountServiceAccountToken": null,
+                "NodeName": "minion2",
+                "SecurityContext": {
+                    "HostNetwork": false,
+                    "HostPID": false,
+                    "HostIPC": false,
+                    "SELinuxOptions": null,
+                    "RunAsUser": null,
+                    "RunAsNonRoot": null,
+                    "SupplementalGroups": null,
+                    "FSGroup": null
+                },
+                "ImagePullSecrets": null,
+                "Hostname": "",
+                "Subdomain": "",
+                "Affinity": null,
+                "SchedulerName": "default-scheduler",
+                "Tolerations": null,
+                "HostAliases": null,
+                "PriorityClassName": "",
+                "Priority": null
+            },
+            "Status": {
+                "Phase": "Running",
+                "Conditions": [
+                    {
+                        "Type": "Initialized",
+                        "Status": "True",
+                        "LastProbeTime": null,
+                        "LastTransitionTime": "2017-11-27T21:19:51Z",
+                        "Reason": "",
+                        "Message": ""
+                    },
+                    {
+                        "Type": "Ready",
+                        "Status": "True",
+                        "LastProbeTime": null,
+                        "LastTransitionTime": "2017-11-27T21:19:55Z",
+                        "Reason": "",
+                        "Message": ""
+                    },
+                    {
+                        "Type": "PodScheduled",
+                        "Status": "True",
+                        "LastProbeTime": null,
+                        "LastTransitionTime": "2017-11-27T21:19:49Z",
+                        "Reason": "",
+                        "Message": ""
+                    }
+                ],
+                "Message": "",
+                "Reason": "",
+                "HostIP": "10.0.0.3",
+                "PodIP": "172.17.0.3",
+                "StartTime": "2017-11-27T21:19:51Z",
+                "QOSClass": "BestEffort",
+                "InitContainerStatuses": null,
+                "ContainerStatuses": [
+                    {
+                        "Name": "tiller",
+                        "State": {
+                            "Waiting": null,
+                            "Running": {
+                                "StartedAt": "2017-11-27T21:19:52Z"
+                            },
+                            "Terminated": null
+                        },
+                        "LastTerminationState": {
+                            "Waiting": null,
+                            "Running": null,
+                            "Terminated": null
+                        },
+                        "Ready": true,
+                        "RestartCount": 0,
+                        "Image": "gcr.io/kubernetes-helm/tiller:v2.7.2",
+                        "ImageID": "docker-pullable://gcr.io/kubernetes-helm/tiller@sha256:df7f227fa722afc4931c912c1cad2c47856ec94f4d052ccceebcb16dd483dad8",
+                        "ContainerID": "docker://3a5f201eaf0ed57950535bdb4e555e275c6d8ca929befc41d71daefc7160c94a"
+                    }
+                ]
+            }
+        }
+    ]
+}
+==== START logs for container tiller of pod kube-system/tiller-deploy-8485bc95cc-mrq6h ====
+[main] 2017/11/27 21:19:52 Starting Tiller v2.7.2 (tls=false)
+[main] 2017/11/27 21:19:52 GRPC listening on :44134
+[main] 2017/11/27 21:19:52 Probes listening on :44135
+[main] 2017/11/27 21:19:52 Storage driver is ConfigMap
+[main] 2017/11/27 21:19:52 Max history per release is 0
+[tiller] 2017/11/27 21:20:37 preparing install for 
+[storage] 2017/11/27 21:20:37 getting release "killjoy-clam.v1"
+[storage/driver] 2017/11/27 21:20:37 get: failed to get "killjoy-clam.v1": Get https://10.254.0.1:443/api/v1/namespaces/kube-system/configmaps/killjoy-clam.v1: dial tcp 10.254.0.1:443: getsockopt: connection refused
+[tiller] 2017/11/27 21:20:37 info: generated name killjoy-clam is taken. Searching again.
+[storage] 2017/11/27 21:20:37 getting release "pining-stingray.v1"
+[storage/driver] 2017/11/27 21:20:37 get: failed to get "pining-stingray.v1": Get https://10.254.0.1:443/api/v1/namespaces/kube-system/configmaps/pining-stingray.v1: dial tcp 10.254.0.1:443: getsockopt: connection refused
+[tiller] 2017/11/27 21:20:37 info: generated name pining-stingray is taken. Searching again.
+[storage] 2017/11/27 21:20:37 getting release "falling-duck.v1"
+[storage/driver] 2017/11/27 21:20:37 get: failed to get "falling-duck.v1": Get https://10.254.0.1:443/api/v1/namespaces/kube-system/configmaps/falling-duck.v1: dial tcp 10.254.0.1:443: getsockopt: connection refused
+[tiller] 2017/11/27 21:20:37 info: generated name falling-duck is taken. Searching again.
+[storage] 2017/11/27 21:20:37 getting release "iced-buffoon.v1"
+[storage/driver] 2017/11/27 21:20:37 get: failed to get "iced-buffoon.v1": Get https://10.254.0.1:443/api/v1/namespaces/kube-system/configmaps/iced-buffoon.v1: dial tcp 10.254.0.1:443: getsockopt: connection refused
+[tiller] 2017/11/27 21:20:37 info: generated name iced-buffoon is taken. Searching again.
+[storage] 2017/11/27 21:20:37 getting release "zeroed-coral.v1"
+[storage/driver] 2017/11/27 21:20:37 get: failed to get "zeroed-coral.v1": Get https://10.254.0.1:443/api/v1/namespaces/kube-system/configmaps/zeroed-coral.v1: dial tcp 10.254.0.1:443: getsockopt: connection refused
+[tiller] 2017/11/27 21:20:37 info: generated name zeroed-coral is taken. Searching again.
+[tiller] 2017/11/27 21:20:37 warning: No available release names found after 5 tries
+[tiller] 2017/11/27 21:20:37 failed install prepare step: no available release name found
+==== END logs for container tiller of pod kube-system/tiller-deploy-8485bc95cc-mrq6h ====
+{
+    "selfLink": "/api/v1/namespaces/default/events",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "minion1.14fb0a08eeb6e3e6",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/events/minion1.14fb0a08eeb6e3e6",
+            "uid": "845be3a4-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "11869",
+            "creationTimestamp": "2017-11-27T20:06:55Z",
+            "InvolvedObject": {
+                "Kind": "Node",
+                "Namespace": "",
+                "Name": "minion1",
+                "UID": "minion1",
+                "APIVersion": "",
+                "ResourceVersion": "",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. pod: \"sl-test-78987c9bd9-m77kv_default(52a5d1ef-d3ae-11e7-862b-5254007a695a)\". Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:05:33Z",
+            "LastTimestamp": "2017-11-27T21:31:43Z",
+            "Count": 71,
+            "Type": "Warning"
+        },
+        {
+            "name": "minion1.14fb0a4f1c41d0db",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/events/minion1.14fb0a4f1c41d0db",
+            "uid": "34b21f54-d3af-11e7-862b-5254007a695a",
+            "resourceVersion": "8368",
+            "creationTimestamp": "2017-11-27T20:11:51Z",
+            "InvolvedObject": {
+                "Kind": "Node",
+                "Namespace": "",
+                "Name": "minion1",
+                "UID": "minion1",
+                "APIVersion": "",
+                "ResourceVersion": "",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. pod: \"tiller-deploy-6cd46c8668-8txnw_kube-system(06624e93-d3af-11e7-862b-5254007a695a)\". Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:10:34Z",
+            "LastTimestamp": "2017-11-27T20:46:55Z",
+            "Count": 35,
+            "Type": "Warning"
+        },
+        {
+            "name": "minion1.14fb0cbf22fd98c8",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/events/minion1.14fb0cbf22fd98c8",
+            "uid": "76f6619f-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "10721",
+            "creationTimestamp": "2017-11-27T20:56:39Z",
+            "InvolvedObject": {
+                "Kind": "Node",
+                "Namespace": "",
+                "Name": "minion1",
+                "UID": "minion1",
+                "APIVersion": "",
+                "ResourceVersion": "",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. pod: \"tiller-deploy-594bb7655b-hj4qk_kube-system(435b9a08-d3b5-11e7-862b-5254007a695a)\". Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:55:14Z",
+            "LastTimestamp": "2017-11-27T21:16:37Z",
+            "Count": 125,
+            "Type": "Warning"
+        },
+        {
+            "name": "minion2.14fb0a08ad14eca5",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/events/minion2.14fb0a08ad14eca5",
+            "uid": "52d8b416-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "11656",
+            "creationTimestamp": "2017-11-27T20:05:32Z",
+            "InvolvedObject": {
+                "Kind": "Node",
+                "Namespace": "",
+                "Name": "minion2",
+                "UID": "minion2",
+                "APIVersion": "",
+                "ResourceVersion": "",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. pod: \"sl-test-78987c9bd9-vbwgh_default(52a19e15-d3ae-11e7-862b-5254007a695a)\". Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T20:05:32Z",
+            "LastTimestamp": "2017-11-27T21:28:49Z",
+            "Count": 71,
+            "Type": "Warning"
+        },
+        {
+            "name": "minion2.14fb0c88056a0da9",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/events/minion2.14fb0c88056a0da9",
+            "uid": "11cf30e9-d3b5-11e7-862b-5254007a695a",
+            "resourceVersion": "8914",
+            "creationTimestamp": "2017-11-27T20:53:49Z",
+            "InvolvedObject": {
+                "Kind": "Node",
+                "Namespace": "",
+                "Name": "minion2",
+                "UID": "minion2",
+                "APIVersion": "",
+                "ResourceVersion": "",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. pod: \"tiller-deploy-d65dd8459-vqvfq_kube-system(b67a180f-d3b4-11e7-862b-5254007a695a)\". Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T20:51:18Z",
+            "LastTimestamp": "2017-11-27T20:53:51Z",
+            "Count": 7,
+            "Type": "Warning"
+        },
+        {
+            "name": "minion2.14fb0e16fc00bd33",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/events/minion2.14fb0e16fc00bd33",
+            "uid": "b3cd87f9-d3b8-11e7-862b-5254007a695a",
+            "resourceVersion": "10980",
+            "creationTimestamp": "2017-11-27T21:19:50Z",
+            "InvolvedObject": {
+                "Kind": "Node",
+                "Namespace": "",
+                "Name": "minion2",
+                "UID": "minion2",
+                "APIVersion": "",
+                "ResourceVersion": "",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. pod: \"tiller-deploy-8485bc95cc-mrq6h_kube-system(b394a487-d3b8-11e7-862b-5254007a695a)\". Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T21:19:51Z",
+            "LastTimestamp": "2017-11-27T21:19:51Z",
+            "Count": 1,
+            "Type": "Warning"
+        },
+        {
+            "name": "sl-test-78987c9bd9-m77kv.14fb0a08eeb6c035",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/events/sl-test-78987c9bd9-m77kv.14fb0a08eeb6c035",
+            "uid": "5304216b-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "11791",
+            "creationTimestamp": "2017-11-27T20:05:32Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "default",
+                "Name": "sl-test-78987c9bd9-m77kv",
+                "UID": "52a5d1ef-d3ae-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "5176",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion1"
+            },
+            "FirstTimestamp": "2017-11-27T20:05:33Z",
+            "LastTimestamp": "2017-11-27T21:30:39Z",
+            "Count": 70,
+            "Type": "Warning"
+        },
+        {
+            "name": "sl-test-78987c9bd9-vbwgh.14fb0a08ad14b370",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/events/sl-test-78987c9bd9-vbwgh.14fb0a08ad14b370",
+            "uid": "52dfb27e-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "11875",
+            "creationTimestamp": "2017-11-27T20:05:32Z",
+            "InvolvedObject": {
+                "Kind": "Pod",
+                "Namespace": "default",
+                "Name": "sl-test-78987c9bd9-vbwgh",
+                "UID": "52a19e15-d3ae-11e7-862b-5254007a695a",
+                "APIVersion": "v1",
+                "ResourceVersion": "5170",
+                "FieldPath": ""
+            },
+            "Reason": "MissingClusterDNS",
+            "Message": "kubelet does not have ClusterDNS IP configured and cannot create Pod using \"ClusterFirst\" policy. Falling back to DNSDefault policy.",
+            "Source": {
+                "Component": "kubelet",
+                "Host": "minion2"
+            },
+            "FirstTimestamp": "2017-11-27T20:05:32Z",
+            "LastTimestamp": "2017-11-27T21:31:48Z",
+            "Count": 73,
+            "Type": "Warning"
+        }
+    ]
+}
+{
+    "selfLink": "/api/v1/namespaces/default/replicationcontrollers",
+    "resourceVersion": "11976",
+    "Items": []
+}
+{
+    "selfLink": "/api/v1/namespaces/default/services",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "kubernetes",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/services/kubernetes",
+            "uid": "9ac27bec-d39b-11e7-8e91-5254007a695a",
+            "resourceVersion": "6",
+            "creationTimestamp": "2017-11-27T17:51:32Z",
+            "labels": {
+                "component": "apiserver",
+                "provider": "kubernetes"
+            },
+            "Spec": {
+                "Type": "ClusterIP",
+                "Ports": [
+                    {
+                        "Name": "https",
+                        "Protocol": "TCP",
+                        "Port": 443,
+                        "TargetPort": 6443,
+                        "NodePort": 0
+                    }
+                ],
+                "Selector": null,
+                "ClusterIP": "10.254.0.1",
+                "ExternalName": "",
+                "ExternalIPs": null,
+                "LoadBalancerIP": "",
+                "SessionAffinity": "ClientIP",
+                "SessionAffinityConfig": {
+                    "ClientIP": {
+                        "TimeoutSeconds": 10800
+                    }
+                },
+                "LoadBalancerSourceRanges": null,
+                "ExternalTrafficPolicy": "",
+                "HealthCheckNodePort": 0,
+                "PublishNotReadyAddresses": false
+            },
+            "Status": {
+                "LoadBalancer": {
+                    "Ingress": null
+                }
+            }
+        },
+        {
+            "name": "sl-test",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/services/sl-test",
+            "uid": "52986e39-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "5163",
+            "creationTimestamp": "2017-11-27T20:05:32Z",
+            "Spec": {
+                "Type": "NodePort",
+                "Ports": [
+                    {
+                        "Name": "http",
+                        "Protocol": "TCP",
+                        "Port": 8098,
+                        "TargetPort": 8080,
+                        "NodePort": 31028
+                    }
+                ],
+                "Selector": {
+                    "app": "sl-test"
+                },
+                "ClusterIP": "10.254.168.48",
+                "ExternalName": "",
+                "ExternalIPs": null,
+                "LoadBalancerIP": "",
+                "SessionAffinity": "None",
+                "SessionAffinityConfig": null,
+                "LoadBalancerSourceRanges": null,
+                "ExternalTrafficPolicy": "Cluster",
+                "HealthCheckNodePort": 0,
+                "PublishNotReadyAddresses": false
+            },
+            "Status": {
+                "LoadBalancer": {
+                    "Ingress": null
+                }
+            }
+        }
+    ]
+}
+{
+    "selfLink": "/apis/extensions/v1beta1/namespaces/default/daemonsets",
+    "resourceVersion": "11976",
+    "Items": []
+}
+{
+    "selfLink": "/apis/extensions/v1beta1/namespaces/default/deployments",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "sl-test",
+            "namespace": "default",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/default/deployments/sl-test",
+            "uid": "529ef61e-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "5212",
+            "generation": 1,
+            "creationTimestamp": "2017-11-27T20:05:32Z",
+            "labels": {
+                "app": "sl-test",
+                "environment": "local"
+            },
+            "annotations": {
+                "deployment.kubernetes.io/revision": "1"
+            },
+            "Spec": {
+                "Replicas": 2,
+                "Selector": {
+                    "matchLabels": {
+                        "app": "sl-test"
+                    }
+                },
+                "Template": {
+                    "creationTimestamp": null,
+                    "labels": {
+                        "app": "sl-test"
+                    },
+                    "Spec": {
+                        "Volumes": null,
+                        "InitContainers": null,
+                        "Containers": [
+                            {
+                                "Name": "sl-test",
+                                "Image": "local-docker-repo:5000/sl-test:latest",
+                                "Command": null,
+                                "Args": null,
+                                "WorkingDir": "",
+                                "Ports": [
+                                    {
+                                        "Name": "",
+                                        "HostPort": 0,
+                                        "ContainerPort": 8080,
+                                        "Protocol": "TCP",
+                                        "HostIP": ""
+                                    }
+                                ],
+                                "EnvFrom": null,
+                                "Env": null,
+                                "Resources": {
+                                    "Limits": null,
+                                    "Requests": null
+                                },
+                                "VolumeMounts": null,
+                                "LivenessProbe": null,
+                                "ReadinessProbe": null,
+                                "Lifecycle": null,
+                                "TerminationMessagePath": "/dev/termination-log",
+                                "TerminationMessagePolicy": "File",
+                                "ImagePullPolicy": "Always",
+                                "SecurityContext": null,
+                                "Stdin": false,
+                                "StdinOnce": false,
+                                "TTY": false
+                            }
+                        ],
+                        "RestartPolicy": "Always",
+                        "TerminationGracePeriodSeconds": 30,
+                        "ActiveDeadlineSeconds": null,
+                        "DNSPolicy": "ClusterFirst",
+                        "NodeSelector": null,
+                        "ServiceAccountName": "",
+                        "AutomountServiceAccountToken": null,
+                        "NodeName": "",
+                        "SecurityContext": {
+                            "HostNetwork": false,
+                            "HostPID": false,
+                            "HostIPC": false,
+                            "SELinuxOptions": null,
+                            "RunAsUser": null,
+                            "RunAsNonRoot": null,
+                            "SupplementalGroups": null,
+                            "FSGroup": null
+                        },
+                        "ImagePullSecrets": null,
+                        "Hostname": "",
+                        "Subdomain": "",
+                        "Affinity": null,
+                        "SchedulerName": "default-scheduler",
+                        "Tolerations": null,
+                        "HostAliases": null,
+                        "PriorityClassName": "",
+                        "Priority": null
+                    }
+                },
+                "Strategy": {
+                    "Type": "RollingUpdate",
+                    "RollingUpdate": {
+                        "MaxUnavailable": 1,
+                        "MaxSurge": 1
+                    }
+                },
+                "MinReadySeconds": 0,
+                "RevisionHistoryLimit": null,
+                "Paused": false,
+                "RollbackTo": null,
+                "ProgressDeadlineSeconds": null
+            },
+            "Status": {
+                "ObservedGeneration": 1,
+                "Replicas": 2,
+                "UpdatedReplicas": 2,
+                "ReadyReplicas": 2,
+                "AvailableReplicas": 2,
+                "UnavailableReplicas": 0,
+                "Conditions": [
+                    {
+                        "Type": "Available",
+                        "Status": "True",
+                        "LastUpdateTime": "2017-11-27T20:05:34Z",
+                        "LastTransitionTime": "2017-11-27T20:05:34Z",
+                        "Reason": "MinimumReplicasAvailable",
+                        "Message": "Deployment has minimum availability."
+                    }
+                ],
+                "CollisionCount": null
+            }
+        }
+    ]
+}
+{
+    "selfLink": "/apis/extensions/v1beta1/namespaces/default/replicasets",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "sl-test-78987c9bd9",
+            "namespace": "default",
+            "selfLink": "/apis/extensions/v1beta1/namespaces/default/replicasets/sl-test-78987c9bd9",
+            "uid": "52a08bfa-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "5211",
+            "generation": 1,
+            "creationTimestamp": "2017-11-27T20:05:32Z",
+            "labels": {
+                "app": "sl-test",
+                "pod-template-hash": "3454375685"
+            },
+            "annotations": {
+                "deployment.kubernetes.io/desired-replicas": "2",
+                "deployment.kubernetes.io/max-replicas": "3",
+                "deployment.kubernetes.io/revision": "1"
+            },
+            "ownerReferences": [
+                {
+                    "apiVersion": "extensions/v1beta1",
+                    "kind": "Deployment",
+                    "name": "sl-test",
+                    "uid": "529ef61e-d3ae-11e7-862b-5254007a695a",
+                    "controller": true,
+                    "blockOwnerDeletion": true
+                }
+            ],
+            "Spec": {
+                "Replicas": 2,
+                "MinReadySeconds": 0,
+                "Selector": {
+                    "matchLabels": {
+                        "app": "sl-test",
+                        "pod-template-hash": "3454375685"
+                    }
+                },
+                "Template": {
+                    "creationTimestamp": null,
+                    "labels": {
+                        "app": "sl-test",
+                        "pod-template-hash": "3454375685"
+                    },
+                    "Spec": {
+                        "Volumes": null,
+                        "InitContainers": null,
+                        "Containers": [
+                            {
+                                "Name": "sl-test",
+                                "Image": "local-docker-repo:5000/sl-test:latest",
+                                "Command": null,
+                                "Args": null,
+                                "WorkingDir": "",
+                                "Ports": [
+                                    {
+                                        "Name": "",
+                                        "HostPort": 0,
+                                        "ContainerPort": 8080,
+                                        "Protocol": "TCP",
+                                        "HostIP": ""
+                                    }
+                                ],
+                                "EnvFrom": null,
+                                "Env": null,
+                                "Resources": {
+                                    "Limits": null,
+                                    "Requests": null
+                                },
+                                "VolumeMounts": null,
+                                "LivenessProbe": null,
+                                "ReadinessProbe": null,
+                                "Lifecycle": null,
+                                "TerminationMessagePath": "/dev/termination-log",
+                                "TerminationMessagePolicy": "File",
+                                "ImagePullPolicy": "Always",
+                                "SecurityContext": null,
+                                "Stdin": false,
+                                "StdinOnce": false,
+                                "TTY": false
+                            }
+                        ],
+                        "RestartPolicy": "Always",
+                        "TerminationGracePeriodSeconds": 30,
+                        "ActiveDeadlineSeconds": null,
+                        "DNSPolicy": "ClusterFirst",
+                        "NodeSelector": null,
+                        "ServiceAccountName": "",
+                        "AutomountServiceAccountToken": null,
+                        "NodeName": "",
+                        "SecurityContext": {
+                            "HostNetwork": false,
+                            "HostPID": false,
+                            "HostIPC": false,
+                            "SELinuxOptions": null,
+                            "RunAsUser": null,
+                            "RunAsNonRoot": null,
+                            "SupplementalGroups": null,
+                            "FSGroup": null
+                        },
+                        "ImagePullSecrets": null,
+                        "Hostname": "",
+                        "Subdomain": "",
+                        "Affinity": null,
+                        "SchedulerName": "default-scheduler",
+                        "Tolerations": null,
+                        "HostAliases": null,
+                        "PriorityClassName": "",
+                        "Priority": null
+                    }
+                }
+            },
+            "Status": {
+                "Replicas": 2,
+                "FullyLabeledReplicas": 2,
+                "ReadyReplicas": 2,
+                "AvailableReplicas": 2,
+                "ObservedGeneration": 1,
+                "Conditions": null
+            }
+        }
+    ]
+}
+{
+    "selfLink": "/api/v1/namespaces/default/pods",
+    "resourceVersion": "11976",
+    "Items": [
+        {
+            "name": "sl-test-78987c9bd9-m77kv",
+            "generateName": "sl-test-78987c9bd9-",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/pods/sl-test-78987c9bd9-m77kv",
+            "uid": "52a5d1ef-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "5210",
+            "creationTimestamp": "2017-11-27T20:05:32Z",
+            "labels": {
+                "app": "sl-test",
+                "pod-template-hash": "3454375685"
+            },
+            "annotations": {
+                "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"default\",\"name\":\"sl-test-78987c9bd9\",\"uid\":\"52a08bfa-d3ae-11e7-862b-5254007a695a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"5166\"}}\n"
+            },
+            "ownerReferences": [
+                {
+                    "apiVersion": "extensions/v1beta1",
+                    "kind": "ReplicaSet",
+                    "name": "sl-test-78987c9bd9",
+                    "uid": "52a08bfa-d3ae-11e7-862b-5254007a695a",
+                    "controller": true,
+                    "blockOwnerDeletion": true
+                }
+            ],
+            "Spec": {
+                "Volumes": [
+                    {
+                        "Name": "default-token-jpwwf",
+                        "HostPath": null,
+                        "EmptyDir": null,
+                        "GCEPersistentDisk": null,
+                        "AWSElasticBlockStore": null,
+                        "GitRepo": null,
+                        "Secret": {
+                            "SecretName": "default-token-jpwwf",
+                            "Items": null,
+                            "DefaultMode": 420,
+                            "Optional": null
+                        },
+                        "NFS": null,
+                        "ISCSI": null,
+                        "Glusterfs": null,
+                        "PersistentVolumeClaim": null,
+                        "RBD": null,
+                        "Quobyte": null,
+                        "FlexVolume": null,
+                        "Cinder": null,
+                        "CephFS": null,
+                        "Flocker": null,
+                        "DownwardAPI": null,
+                        "FC": null,
+                        "AzureFile": null,
+                        "ConfigMap": null,
+                        "VsphereVolume": null,
+                        "AzureDisk": null,
+                        "PhotonPersistentDisk": null,
+                        "Projected": null,
+                        "PortworxVolume": null,
+                        "ScaleIO": null,
+                        "StorageOS": null
+                    }
+                ],
+                "InitContainers": null,
+                "Containers": [
+                    {
+                        "Name": "sl-test",
+                        "Image": "local-docker-repo:5000/sl-test:latest",
+                        "Command": null,
+                        "Args": null,
+                        "WorkingDir": "",
+                        "Ports": [
+                            {
+                                "Name": "",
+                                "HostPort": 0,
+                                "ContainerPort": 8080,
+                                "Protocol": "TCP",
+                                "HostIP": ""
+                            }
+                        ],
+                        "EnvFrom": null,
+                        "Env": null,
+                        "Resources": {
+                            "Limits": null,
+                            "Requests": null
+                        },
+                        "VolumeMounts": [
+                            {
+                                "Name": "default-token-jpwwf",
+                                "ReadOnly": true,
+                                "MountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "SubPath": "",
+                                "MountPropagation": null
+                            }
+                        ],
+                        "LivenessProbe": null,
+                        "ReadinessProbe": null,
+                        "Lifecycle": null,
+                        "TerminationMessagePath": "/dev/termination-log",
+                        "TerminationMessagePolicy": "File",
+                        "ImagePullPolicy": "Always",
+                        "SecurityContext": null,
+                        "Stdin": false,
+                        "StdinOnce": false,
+                        "TTY": false
+                    }
+                ],
+                "RestartPolicy": "Always",
+                "TerminationGracePeriodSeconds": 30,
+                "ActiveDeadlineSeconds": null,
+                "DNSPolicy": "ClusterFirst",
+                "NodeSelector": null,
+                "ServiceAccountName": "default",
+                "AutomountServiceAccountToken": null,
+                "NodeName": "minion1",
+                "SecurityContext": {
+                    "HostNetwork": false,
+                    "HostPID": false,
+                    "HostIPC": false,
+                    "SELinuxOptions": null,
+                    "RunAsUser": null,
+                    "RunAsNonRoot": null,
+                    "SupplementalGroups": null,
+                    "FSGroup": null
+                },
+                "ImagePullSecrets": null,
+                "Hostname": "",
+                "Subdomain": "",
+                "Affinity": null,
+                "SchedulerName": "default-scheduler",
+                "Tolerations": null,
+                "HostAliases": null,
+                "PriorityClassName": "",
+                "Priority": null
+            },
+            "Status": {
+                "Phase": "Running",
+                "Conditions": [
+                    {
+                        "Type": "Initialized",
+                        "Status": "True",
+                        "LastProbeTime": null,
+                        "LastTransitionTime": "2017-11-27T20:05:32Z",
+                        "Reason": "",
+                        "Message": ""
+                    },
+                    {
+                        "Type": "Ready",
+                        "Status": "True",
+                        "LastProbeTime": null,
+                        "LastTransitionTime": "2017-11-27T20:05:35Z",
+                        "Reason": "",
+                        "Message": ""
+                    },
+                    {
+                        "Type": "PodScheduled",
+                        "Status": "True",
+                        "LastProbeTime": null,
+                        "LastTransitionTime": "2017-11-27T20:05:32Z",
+                        "Reason": "",
+                        "Message": ""
+                    }
+                ],
+                "Message": "",
+                "Reason": "",
+                "HostIP": "172.28.128.9",
+                "PodIP": "172.17.0.2",
+                "StartTime": "2017-11-27T20:05:32Z",
+                "QOSClass": "BestEffort",
+                "InitContainerStatuses": null,
+                "ContainerStatuses": [
+                    {
+                        "Name": "sl-test",
+                        "State": {
+                            "Waiting": null,
+                            "Running": {
+                                "StartedAt": "2017-11-27T20:05:34Z"
+                            },
+                            "Terminated": null
+                        },
+                        "LastTerminationState": {
+                            "Waiting": null,
+                            "Running": null,
+                            "Terminated": null
+                        },
+                        "Ready": true,
+                        "RestartCount": 0,
+                        "Image": "docker.io/ulls/sl-test:0",
+                        "ImageID": "docker-pullable://docker.io/ulls/sl-test@sha256:61d86233c7b4c93b7baa8f1be5e9fe4c1f9e286c6aa430d045393a8d5f48f731",
+                        "ContainerID": "docker://e1a4265506ee20131ecc0bc7efa94e570904be83c67a3b6096073b7597ac5f0b"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "sl-test-78987c9bd9-vbwgh",
+            "generateName": "sl-test-78987c9bd9-",
+            "namespace": "default",
+            "selfLink": "/api/v1/namespaces/default/pods/sl-test-78987c9bd9-vbwgh",
+            "uid": "52a19e15-d3ae-11e7-862b-5254007a695a",
+            "resourceVersion": "5204",
+            "creationTimestamp": "2017-11-27T20:05:32Z",
+            "labels": {
+                "app": "sl-test",
+                "pod-template-hash": "3454375685"
+            },
+            "annotations": {
+                "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicaSet\",\"namespace\":\"default\",\"name\":\"sl-test-78987c9bd9\",\"uid\":\"52a08bfa-d3ae-11e7-862b-5254007a695a\",\"apiVersion\":\"extensions\",\"resourceVersion\":\"5166\"}}\n"
+            },
+            "ownerReferences": [
+                {
+                    "apiVersion": "extensions/v1beta1",
+                    "kind": "ReplicaSet",
+                    "name": "sl-test-78987c9bd9",
+                    "uid": "52a08bfa-d3ae-11e7-862b-5254007a695a",
+                    "controller": true,
+                    "blockOwnerDeletion": true
+                }
+            ],
+            "Spec": {
+                "Volumes": [
+                    {
+                        "Name": "default-token-jpwwf",
+                        "HostPath": null,
+                        "EmptyDir": null,
+                        "GCEPersistentDisk": null,
+                        "AWSElasticBlockStore": null,
+                        "GitRepo": null,
+                        "Secret": {
+                            "SecretName": "default-token-jpwwf",
+                            "Items": null,
+                            "DefaultMode": 420,
+                            "Optional": null
+                        },
+                        "NFS": null,
+                        "ISCSI": null,
+                        "Glusterfs": null,
+                        "PersistentVolumeClaim": null,
+                        "RBD": null,
+                        "Quobyte": null,
+                        "FlexVolume": null,
+                        "Cinder": null,
+                        "CephFS": null,
+                        "Flocker": null,
+                        "DownwardAPI": null,
+                        "FC": null,
+                        "AzureFile": null,
+                        "ConfigMap": null,
+                        "VsphereVolume": null,
+                        "AzureDisk": null,
+                        "PhotonPersistentDisk": null,
+                        "Projected": null,
+                        "PortworxVolume": null,
+                        "ScaleIO": null,
+                        "StorageOS": null
+                    }
+                ],
+                "InitContainers": null,
+                "Containers": [
+                    {
+                        "Name": "sl-test",
+                        "Image": "local-docker-repo:5000/sl-test:latest",
+                        "Command": null,
+                        "Args": null,
+                        "WorkingDir": "",
+                        "Ports": [
+                            {
+                                "Name": "",
+                                "HostPort": 0,
+                                "ContainerPort": 8080,
+                                "Protocol": "TCP",
+                                "HostIP": ""
+                            }
+                        ],
+                        "EnvFrom": null,
+                        "Env": null,
+                        "Resources": {
+                            "Limits": null,
+                            "Requests": null
+                        },
+                        "VolumeMounts": [
+                            {
+                                "Name": "default-token-jpwwf",
+                                "ReadOnly": true,
+                                "MountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "SubPath": "",
+                                "MountPropagation": null
+                            }
+                        ],
+                        "LivenessProbe": null,
+                        "ReadinessProbe": null,
+                        "Lifecycle": null,
+                        "TerminationMessagePath": "/dev/termination-log",
+                        "TerminationMessagePolicy": "File",
+                        "ImagePullPolicy": "Always",
+                        "SecurityContext": null,
+                        "Stdin": false,
+                        "StdinOnce": false,
+                        "TTY": false
+                    }
+                ],
+                "RestartPolicy": "Always",
+                "TerminationGracePeriodSeconds": 30,
+                "ActiveDeadlineSeconds": null,
+                "DNSPolicy": "ClusterFirst",
+                "NodeSelector": null,
+                "ServiceAccountName": "default",
+                "AutomountServiceAccountToken": null,
+                "NodeName": "minion2",
+                "SecurityContext": {
+                    "HostNetwork": false,
+                    "HostPID": false,
+                    "HostIPC": false,
+                    "SELinuxOptions": null,
+                    "RunAsUser": null,
+                    "RunAsNonRoot": null,
+                    "SupplementalGroups": null,
+                    "FSGroup": null
+                },
+                "ImagePullSecrets": null,
+                "Hostname": "",
+                "Subdomain": "",
+                "Affinity": null,
+                "SchedulerName": "default-scheduler",
+                "Tolerations": null,
+                "HostAliases": null,
+                "PriorityClassName": "",
+                "Priority": null
+            },
+            "Status": {
+                "Phase": "Running",
+                "Conditions": [
+                    {
+                        "Type": "Initialized",
+                        "Status": "True",
+                        "LastProbeTime": null,
+                        "LastTransitionTime": "2017-11-27T20:05:31Z",
+                        "Reason": "",
+                        "Message": ""
+                    },
+                    {
+                        "Type": "Ready",
+                        "Status": "True",
+                        "LastProbeTime": null,
+                        "LastTransitionTime": "2017-11-27T20:05:34Z",
+                        "Reason": "",
+                        "Message": ""
+                    },
+                    {
+                        "Type": "PodScheduled",
+                        "Status": "True",
+                        "LastProbeTime": null,
+                        "LastTransitionTime": "2017-11-27T20:05:32Z",
+                        "Reason": "",
+                        "Message": ""
+                    }
+                ],
+                "Message": "",
+                "Reason": "",
+                "HostIP": "10.0.0.3",
+                "PodIP": "172.17.0.2",
+                "StartTime": "2017-11-27T20:05:31Z",
+                "QOSClass": "BestEffort",
+                "InitContainerStatuses": null,
+                "ContainerStatuses": [
+                    {
+                        "Name": "sl-test",
+                        "State": {
+                            "Waiting": null,
+                            "Running": {
+                                "StartedAt": "2017-11-27T20:05:33Z"
+                            },
+                            "Terminated": null
+                        },
+                        "LastTerminationState": {
+                            "Waiting": null,
+                            "Running": null,
+                            "Terminated": null
+                        },
+                        "Ready": true,
+                        "RestartCount": 0,
+                        "Image": "local-docker-repo:5000/sl-test:latest",
+                        "ImageID": "docker-pullable://local-docker-repo:5000/sl-test@sha256:3e36c24573600135e43cdd005b2a4e02d931831bd9bed63a46245b735e278031",
+                        "ContainerID": "docker://c2c31a82c5052c0ea6db736b4b960b3a3ae063648944a91a70dbdbda41d03955"
+                    }
+                ]
+            }
+        }
+    ]
+}
+==== START logs for container sl-test of pod default/sl-test-78987c9bd9-m77kv ====
+Starting Server on port 8080...
+OK. HTTP server started
+socket 0 opened
+socket 1 opened
+Received request for URL: /
+Received request for URL: /favicon.ico
+socket 2 opened
+socket 3 opened
+Received request for URL: /
+Received request for URL: /favicon.ico
+socket 3 closed
+socket 2 closed
+socket 1 closed
+==== END logs for container sl-test of pod default/sl-test-78987c9bd9-m77kv ====
+==== START logs for container sl-test of pod default/sl-test-78987c9bd9-vbwgh ====
+Starting Server on port 8080...
+OK. HTTP server started
+socket 0 opened
+socket 1 opened
+Received request for URL: /
+Received request for URL: /favicon.ico
+socket 2 opened
+socket 3 opened
+Received request for URL: /
+Received request for URL: /favicon.ico
+socket 3 closed
+socket 2 closed
+socket 1 closed
+socket 0 closed
+socket 4 opened
+socket 5 opened
+socket 6 opened
+Received request for URL: /
+Received request for URL: /favicon.ico
+socket 6 closed
+socket 5 closed
+socket 4 closed
+==== END logs for container sl-test of pod default/sl-test-78987c9bd9-vbwgh ====
+Cluster info dumped to standard output
